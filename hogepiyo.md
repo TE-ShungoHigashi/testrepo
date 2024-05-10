@@ -5,6 +5,6 @@ asdlfkasdjflkajsdflkasdjflaskdjflk
 あlksdjfぁksdjfヵsdjflk
 あlsdkfじゃlsdkfじゃlsdkfじゃsldkf
 
-どすこい
-
 hogepuyo
+
+9日初修正
