@@ -1,6 +1,6 @@
 asdlfkasdjflkajsdflkasdjflaskdjflk
 
-ここ=リモートです。
+ここ=ローカル
 
 あlksdjfぁksdjfヵsdjflk
 あlsdkfじゃlsdkfじゃlsdkfじゃsldkf
