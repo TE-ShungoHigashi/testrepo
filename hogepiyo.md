@@ -1,6 +1,6 @@
 asdlfkasdjflkajsdflkasdjflaskdjflk
 
-ここ=リモート
+ここ=dosueリモート
 
 あlksdjfぁksdjfヵsdjflk
 あlsdkfじゃlsdkfじゃlsdkfじゃsldkf
