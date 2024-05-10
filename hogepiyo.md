@@ -1,6 +1,6 @@
 asdlfkasdjflkajsdflkasdjflaskdjflk
 
-ここ=ローカルで書き換えました
+ここ=リモートです。
 
 あlksdjfぁksdjfヵsdjflk
 あlsdkfじゃlsdkfじゃlsdkfじゃsldkf
