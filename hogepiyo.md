@@ -6,4 +6,3 @@ asdlfkasdjflkajsdflkasdjflaskdjflk
 あlsdkfじゃlsdkfじゃlsdkfじゃsldkf
 
 どすこい
-あsdふぁsdふぁsd
