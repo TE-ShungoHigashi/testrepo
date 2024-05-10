@@ -1,1 +1,6 @@
 asdlfkasdjflkajsdflkasdjflaskdjflk
+
+ここ=ローカルで書き換えました
+
+あlksdjfぁksdjfヵsdjflk
+あlsdkfじゃlsdkfじゃlsdkfじゃsldkf
