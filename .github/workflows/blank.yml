@@ -25,6 +25,7 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+      - run: exit 1
       - run: ls -R
       - run: mkdir -p path/to/artifact
       - run: echo "hello world" > path/to/artifact/hello.txt
