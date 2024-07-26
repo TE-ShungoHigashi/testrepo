@@ -33,7 +33,7 @@ jobs:
           echo "repo name: ${{github.event.repository.name}}"
       - uses: actions/checkout@v4
         with:
-          ref: ${{github.ref}}
+          ref: ${{github.ref_name}}
       - run: echo ${{github.ref}}
       - run: git ls-remote
       - run: git checkout ${{github.ref}}
