@@ -32,7 +32,7 @@ jobs:
       - run: echo "hello world" > path/to/artifact/hello.txt
       - uses: actions/checkout@v4
         with:
-          ref: $${github.ref}
+          ref: $${{github.ref}}
       - run: |
           git branch -vv
           
