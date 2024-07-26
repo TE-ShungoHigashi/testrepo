@@ -30,13 +30,12 @@ jobs:
       - run: ls -R
       - run: mkdir -p path/to/artifact
       - run: echo "hello world" > path/to/artifact/hello.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/checkout@v4
         with:
-          name: hello-artifact
-          path: path/to/artifact/hello.txt
-          if-no-files-found: warn
-          retention-days: 1
-          overwrite: true
+          ref: $${github.ref}
+      - run: |
+          git branch -vv
+          
   # job2:
   #   needs: job1
   #   runs-on: ubuntu-latest
