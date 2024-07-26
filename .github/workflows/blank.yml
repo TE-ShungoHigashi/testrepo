@@ -35,6 +35,7 @@ jobs:
         with:
           ref: ${{github.ref}}
       - run: echo ${{github.ref}}
+      - run: git ls-remote
       - run: git checkout ${{github.ref}}
           
   # job2:
