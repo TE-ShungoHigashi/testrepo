@@ -26,6 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: date
+      - env:
+          ENV_HOGE: hoge
+        run: |
+          echo ENV_HOGE=$ENV_HOGE
+          printenv | grep ENV_HOGE
       - run: ls -R
       - run: mkdir -p path/to/artifact
       - run: echo "hello world" > path/to/artifact/hello.txt
