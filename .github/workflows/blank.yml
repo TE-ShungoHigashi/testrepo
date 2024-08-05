@@ -37,9 +37,9 @@ jobs:
       - run: echo "hello world" > path/to/artifact/hello.txt
       - run: |
           echo "repo name: ${{github.event.repository.name}}"
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{github.ref_name}}
+          ls -l
+          pwd
+
       # - run: echo ${{github.ref}}
       # - run: git ls-remote
       # - run: git checkout ${{github.ref}}
@@ -48,6 +48,9 @@ jobs:
           name: hello
           path: path/to/artifact/
           if-no-files-found: error
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{github.ref_name}}
       - uses: actions/download-artifact@v4
         with:
           name: hello
