@@ -39,9 +39,7 @@ jobs:
           echo "repo name: ${{github.event.repository.name}}"
           ls -l
           pwd
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{github.ref_name}}
+
       # - run: echo ${{github.ref}}
       # - run: git ls-remote
       # - run: git checkout ${{github.ref}}
@@ -50,6 +48,9 @@ jobs:
           name: hello
           path: path/to/
           if-no-files-found: error
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{github.ref_name}}
 
       - run: pwd
       - uses: actions/download-artifact@v4
