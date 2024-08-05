@@ -36,38 +36,6 @@ jobs:
           printenv | grep ENV_HOGE
       # - run: printenv | grep ENV_HOGE
       - run: ls -R
-      - run: mkdir -p path/to/artifact
-      - run: echo "hello world" > path/to/artifact/hello.txt
-      - run: |
-          echo "repo name: ${{github.event.repository.name}}"
-          ls -l
-          pwd
-
-      # - run: echo ${{github.ref}}
-      # - run: git ls-remote
-      # - run: git checkout ${{github.ref}}
-      - uses: actions/upload-artifact@v4
-        with:
-          name: hello${{matrix.test}}
-          path: path/to/
-          if-no-files-found: error
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{github.ref_name}}
-
-      - run: pwd
-      - uses: actions/download-artifact@v4
-        with:
-          name: hello${{matrix.test}}
-          path: hogedir
-      - run: ls hogedir
-      - uses: actions/download-artifact@v4
-        with:
-          name: hello${{matrix.test}}
-          path: hogedir
-      
-
-
 
 
   # # This workflow contains a single job called "build"
