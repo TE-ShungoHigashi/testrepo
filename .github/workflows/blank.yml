@@ -66,9 +66,13 @@ jobs:
           path: hogedir
       - run: echo hogeputyo
         if: ${{ failure() }}
-      
-
-
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo piyo
+      - run: echo always job2
+        if: ${{ always() }}
 
 
   # # This workflow contains a single job called "build"
