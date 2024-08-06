@@ -24,9 +24,7 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        test: [1,2]
+
     steps:
       - run: date
       - env:
@@ -37,6 +35,10 @@ jobs:
       # - run: printenv | grep ENV_HOGE
       - run: ls -R
       - run: mkdir -p path/to/artifact
+      - run: exit 1
+        id : exit1
+      - run: echo output check
+        if: ${{steps.exit1.conclusion != 'skipped'}}
       - run: echo "hello world" > path/to/artifact/hello.txt
       - run: |
           echo "repo name: ${{github.event.repository.name}}"
@@ -48,7 +50,7 @@ jobs:
       # - run: git checkout ${{github.ref}}
       - uses: actions/upload-artifact@v4
         with:
-          name: hello${{matrix.test}}
+          name: hello
           path: path/to/
           if-no-files-found: error
       - uses: actions/checkout@v4
@@ -58,14 +60,10 @@ jobs:
       - run: pwd
       - uses: actions/download-artifact@v4
         with:
-          name: hello${{matrix.test}}
+          name: hello
           path: hogedir
       - run: ls hogedir
-      - uses: actions/download-artifact@v4
-        with:
-          name: hello${{matrix.test}}
-          path: hogedir
-      
+
 
 
 
