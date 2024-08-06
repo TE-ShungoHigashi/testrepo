@@ -24,9 +24,6 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        test: [1,2]
     steps:
       - run: date
       - env:
@@ -48,7 +45,7 @@ jobs:
       # - run: git checkout ${{github.ref}}
       - uses: actions/upload-artifact@v4
         with:
-          name: hello${{matrix.test}}
+          name: hello
           path: path/to/
           if-no-files-found: error
       - run: exit 1
@@ -59,13 +56,13 @@ jobs:
       - run: pwd
       - uses: actions/download-artifact@v4
         with:
-          name: hello${{matrix.test}}
+          name: hello
           path: hogedir
-      - run: ls hogedir
+      - run: echo always
         if: ${{ always() }}
       - uses: actions/download-artifact@v4
         with:
-          name: hello${{matrix.test}}
+          name: hello
           path: hogedir
       - run: echo hogeputyo
         if: ${{ failure() }}
