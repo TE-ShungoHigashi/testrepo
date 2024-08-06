@@ -68,7 +68,7 @@ jobs:
           name: hello${{matrix.test}}
           path: hogedir
       - run: echo hogeputyo
-        if: ${{ failure() }
+        if: ${{ failure() }}
       
 
 
