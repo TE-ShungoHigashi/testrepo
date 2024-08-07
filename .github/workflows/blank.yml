@@ -67,7 +67,7 @@ jobs:
       - run: echo hogeputyo
         if: ${{ failure() }}
       - run: echo hogeputyo
-        if: ${{ !canceled() }}
+        if: ${{ !cancelled() }}
   job2:
     needs: job1
     runs-on: ubuntu-latest
