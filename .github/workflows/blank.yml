@@ -45,6 +45,9 @@ jobs:
           path: path/to/
           if-no-files-found: error
       - run: exit 1
+      - name: what we want to do
+        id: target
+        run: sleep 10s
 
       - run: echo always
         if: ${{ always() }}
@@ -52,6 +55,8 @@ jobs:
         if: ${{ failure() }}
       - run: echo not cancelled
         if: ${{ !cancelled() }}
+      - run: echo target state is ${{steps.target.outcome}}
+        if: ${{always()}}
   job2:
     needs: job1
     runs-on: ubuntu-latest
