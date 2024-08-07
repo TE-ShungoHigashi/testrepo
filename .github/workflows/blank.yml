@@ -44,7 +44,7 @@ jobs:
           name: hello
           path: path/to/
           if-no-files-found: error
-      - run: exit 1
+      - run: sleep 10s
       - name: what we want to do
         id: target
         run: sleep 10s
