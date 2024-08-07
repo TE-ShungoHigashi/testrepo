@@ -66,6 +66,8 @@ jobs:
           path: hogedir
       - run: echo hogeputyo
         if: ${{ failure() }}
+      - run: echo hogeputyo
+        if: ${{ !canceled() }}
   job2:
     needs: job1
     runs-on: ubuntu-latest
