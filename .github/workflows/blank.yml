@@ -39,34 +39,18 @@ jobs:
           echo "repo name: ${{github.event.repository.name}}"
           ls -l
           pwd
-
-      # - run: echo ${{github.ref}}
-      # - run: git ls-remote
-      # - run: git checkout ${{github.ref}}
       - uses: actions/upload-artifact@v4
         with:
           name: hello
           path: path/to/
           if-no-files-found: error
       - run: exit 1
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{github.ref_name}}
 
-      - run: pwd
-      - uses: actions/download-artifact@v4
-        with:
-          name: hello
-          path: hogedir
       - run: echo always
         if: ${{ always() }}
-      - uses: actions/download-artifact@v4
-        with:
-          name: hello
-          path: hogedir
-      - run: echo hogeputyo
+      - run: echo failure
         if: ${{ failure() }}
-      - run: echo hogeputyo
+      - run: echo not cancelled
         if: ${{ !cancelled() }}
   job2:
     needs: job1
