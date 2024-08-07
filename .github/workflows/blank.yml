@@ -45,6 +45,7 @@ jobs:
           path: path/to/
           if-no-files-found: error
       - run: sleep 10s
+        id: pre-target
       - name: what we want to do
         id: target
         run: sleep 10s
@@ -56,6 +57,8 @@ jobs:
       - run: echo not cancelled
         if: ${{ !cancelled() }}
       - run: echo target state is ${{steps.target.outcome}}
+        if: ${{always()}}
+      - run: echo pre-target state is ${{steps.pre-target.outcome}}
         if: ${{always()}}
   job2:
     needs: job1
