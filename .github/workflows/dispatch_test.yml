@@ -1,0 +1,17 @@
+name: dispatch_test
+on:
+  workflow_dispatch:
+    inputs:
+      booltest:
+        required: false
+        default: hogehoge
+        type: string
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "hello world"
+          echo ${{inputs.booltest}}
+    
