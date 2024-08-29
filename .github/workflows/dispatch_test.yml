@@ -2,14 +2,6 @@ name: dispatch_test
 on:
   workflow_dispatch:
     inputs:
-      mode:
-        description: |
-          select a mode \
-          hogehoge puio
-        required: true
-        type: choice
-        options:
-          - "[HOGE] hogepiyo1"
       labels:
         description: labels
         required: true
@@ -17,6 +9,7 @@ on:
 
 jobs:
   job1:
+    if: ${{inputs.labels != ''}}
     runs-on: ${{inputs.labels}}
     steps:
       - run: |
