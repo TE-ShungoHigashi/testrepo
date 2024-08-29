@@ -1,11 +1,15 @@
 name: dispatch_test
+env:
+  option1: option1 name
 on:
   workflow_dispatch:
     inputs:
-      booltest:
-        required: false
-        default: hogehoge
-        type: string
+      mode:
+        description: select a mode
+        required: true
+        type: choice
+        options:
+          - "${{env.option1}}"
 
 jobs:
   job1:
