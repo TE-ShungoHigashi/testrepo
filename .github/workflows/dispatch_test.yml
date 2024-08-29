@@ -3,7 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: select a mode `hoge` dayo
+        description: |
+          select a mode \
+          hogehoge puio
         required: true
         type: choice
         options:
