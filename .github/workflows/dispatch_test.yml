@@ -9,6 +9,7 @@ on:
 
 jobs:
   job1:
+    name: '[HELP] help me'
     if: ${{inputs.labels != ''}}
     runs-on: ${{inputs.labels}}
     steps:
