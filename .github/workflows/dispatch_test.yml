@@ -9,7 +9,7 @@ on:
         required: true
         type: choice
         options:
-          - "${{env.option1}}"
+          - ${{env.option1}}
 
 jobs:
   job1:
