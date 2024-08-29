@@ -1,6 +1,4 @@
 name: dispatch_test
-env:
-  option1: option1 name
 on:
   workflow_dispatch:
     inputs:
@@ -9,13 +7,16 @@ on:
         required: true
         type: choice
         options:
-          - ${{env.option1}}
+          - "[HOGE] hogepiyo1"
+      labels:
+        description: labels
+        required: true
+        type: string
 
 jobs:
   job1:
-    runs-on: ubuntu-latest
+    runs-on: ${{inputs.labels}}
     steps:
       - run: |
-          echo "hello world"
-
+          echo ${{inputs.mode}}
     
