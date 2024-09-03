@@ -2,15 +2,12 @@ name: dispatch_test
 on:
   workflow_dispatch:
     inputs:
-      labels:
-        description: labels
-        required: false
-        type: string
       val:
         required: false
         type: string
 env:
   default_val: hogepiyo
+  HOGE: hohoho
 
 jobs:
   job1:
@@ -19,4 +16,5 @@ jobs:
     steps:
       - run: |
           echo ${{inputs.val || env.default_val}}
-    
+      - uses: actions/checkout@v4
+      - run: test.sh
