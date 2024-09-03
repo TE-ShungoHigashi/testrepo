@@ -18,3 +18,4 @@ jobs:
           echo ${{inputs.val || env.default_val}}
       - uses: actions/checkout@v4
       - run: ./test.sh
+      - run: printenv
