@@ -6,7 +6,4 @@ jobs:
   job0:
     name: workflow_call
     uses: ./.github/workflows/dispatch_test.yml
-    with:
-      val: call from call.yml
-    
-      
+
