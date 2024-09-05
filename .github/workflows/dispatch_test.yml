@@ -10,18 +10,11 @@ on:
       val:
         required: false
         type: string
-        default: defaultdayo
-env:
-  default_val: hogepiyo
-  HOGE: hohoho
+        default: This is default value
 
 jobs:
   job1:
-    name: '[HELP] help me'
+    name: 'Show inputs.val'
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo ${{inputs.val || env.default_val}}
-      - uses: actions/checkout@v4
-      - run: bash test.sh
-      - run: printenv
+      - run: echo ${{inputs.val}}
