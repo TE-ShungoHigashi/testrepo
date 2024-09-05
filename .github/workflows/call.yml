@@ -1,4 +1,4 @@
-name: matrix
+name: caller
 on:
   workflow_dispatch:
 
@@ -7,6 +7,6 @@ jobs:
     name: workflow_call
     uses: ./.github/workflows/dispatch_test.yml
     with:
-      val: call from matrix
+      val: call from call.yml
     
       
