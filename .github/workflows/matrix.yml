@@ -1,4 +1,4 @@
-name: aiueo700
+name: matrix
 on:
   workflow_dispatch:
 
@@ -6,5 +6,7 @@ jobs:
   job0:
     name: workflow_call
     uses: ./.github/workflows/dispatch_test.yml
+    with:
+      val: call from matrix
     
       
