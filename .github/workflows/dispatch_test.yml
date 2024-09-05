@@ -5,6 +5,12 @@ on:
       val:
         required: false
         type: string
+  workflow_call:
+    inputs:
+      val:
+        required: false
+        type: string
+        default: defaultdayo
 env:
   default_val: hogepiyo
   HOGE: hohoho
