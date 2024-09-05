@@ -1,14 +1,10 @@
-name: matrix runs-on
+name: aiueo700
 on:
   workflow_dispatch:
 
 jobs:
-  job1:
-    name: matrix runs-on
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{matrix.os}}
-    steps:
-      - uses: actions/checkout@v4
+  job0:
+    name: workflow_call
+    uses: ./.github/workflows/dispatch_test.yml
+    
       
