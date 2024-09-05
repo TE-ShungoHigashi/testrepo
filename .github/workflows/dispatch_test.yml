@@ -5,6 +5,11 @@ on:
       val:
         required: false
         type: string
+      option_example:
+        required: false
+        type: choice
+        default: "1"
+        options: ["1", "2"]
   workflow_call:
     inputs:
       val:
