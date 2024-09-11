@@ -12,5 +12,6 @@ jobs:
         with:
           name: this_is_name
           path: |
-            dir/
+            hoge
+            dir
       
