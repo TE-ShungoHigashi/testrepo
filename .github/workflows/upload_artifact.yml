@@ -12,7 +12,5 @@ jobs:
         with:
           name: this_is_name
           path: |
-            test.sh
-            hoge
             dir/
       
