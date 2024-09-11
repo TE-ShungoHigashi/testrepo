@@ -14,5 +14,5 @@ jobs:
           path: |
             test.sh
             hoge
-            dir
+            dir/
       
