@@ -2,16 +2,15 @@ name: upload artifact
 
 on:
   push:
-
+env:
+  test: hoge
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/upload-artifact@v4
-        with:
-          name: this_is_name
-          path: |
-            hoge
-            dir
-      
+      - run: |
+          if [[ ${{startsWith(env.test) ]]; then
+            echo true
+          else
+            echo false
+          fi
