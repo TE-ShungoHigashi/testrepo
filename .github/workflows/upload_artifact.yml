@@ -3,7 +3,7 @@ name: upload artifact
 on:
   push:
 env:
-  test: hoge
+  test: false
 jobs:
   job1:
     runs-on: ubuntu-latest
