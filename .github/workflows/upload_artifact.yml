@@ -25,7 +25,7 @@ jobs:
           key: cache_test
       - name: check content (1st)
         run: |
-          [ -e dir/test.txt ] && cat dir/test.txt || { echo no file && mkdir dir }
+          [ -e dir/test.txt ] && cat dir/test.txt || { echo "no file"; mkdir dir }
       - name: add content
         run: |
           echo ${{inputs.content}} >> dir/test.txt
