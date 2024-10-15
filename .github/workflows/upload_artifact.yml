@@ -3,6 +3,9 @@ name: upload artifact
 on:
   push:
   workflow_dispatch:
+    inputs:
+      content:
+        type: string
 env:
   test: false
 jobs:
@@ -13,7 +16,25 @@ jobs:
           echo "TEST1=hoge1" >> $GITHUB_ENV
           echo "TEST2=/${TEST1}" >> $GITHUB_ENV
       - name: test
-        # if: 'aaaa' == 'aaaa'
         run:
           echo TEST1=${TEST1}
           echo TEST2=${TEST2}
+      - name: restore cache
+        uses: actions/cache/restore@v4
+        with:
+          path: dir
+          key: cache_test
+      - name: check content
+        run: |
+          [ -e dir/test.txt ] && cat dir/test.txt || echo no file
+      - name: add content
+        run: echo ${{inputs.content}} >> dir/test.txt
+      - name: check content
+        run: |
+          [ -e dir/test.txt ] && cat dir/test.txt || echo no file
+      - name: save cache
+        uses: actions/cache/save@v4
+        with:
+          path: dir
+          key: cache_test
+        
