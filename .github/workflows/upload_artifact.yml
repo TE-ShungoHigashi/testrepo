@@ -24,14 +24,15 @@ jobs:
         with:
           path: dir
           key: cache_test
-      - name: check content
+      - name: check content (1st)
         run: |
           [ -e dir/test.txt ] && cat dir/test.txt || echo no file
       - name: add content
-        run: echo ${{inputs.content}} >> dir/test.txt
-      - name: check content
         run: |
-          [ -e dir/test.txt ] && cat dir/test.txt || echo no file
+          [ -e dir/test.txt] && echo ${{inputs.content}} >> dir/test.txt
+      - name: check content (2nd)
+        run: |
+          cat dir/test.txt
       - name: save cache
         uses: actions/cache/save@v4
         with:
