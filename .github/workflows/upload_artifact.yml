@@ -29,7 +29,7 @@ jobs:
           [ -e dir/test.txt ] && cat dir/test.txt || echo no file
       - name: add content
         run: |
-          [ -e dir/test.txt] && echo ${{inputs.content}} >> dir/test.txt
+          [ -e dir/test.txt ] && echo ${{inputs.content}} >> dir/test.txt
       - name: check content (2nd)
         run: |
           cat dir/test.txt
