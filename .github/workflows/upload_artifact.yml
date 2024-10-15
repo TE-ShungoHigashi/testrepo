@@ -1,7 +1,6 @@
 name: upload artifact
 
 on:
-  push:
   workflow_dispatch:
     inputs:
       content:
@@ -26,10 +25,10 @@ jobs:
           key: cache_test
       - name: check content (1st)
         run: |
-          [ -e dir/test.txt ] && cat dir/test.txt || echo no file
+          [ -e dir/test.txt ] && cat dir/test.txt || { echo no file && mkdir dir }
       - name: add content
         run: |
-          [ -e dir/test.txt ] && echo ${{inputs.content}} >> dir/test.txt
+          echo ${{inputs.content}} >> dir/test.txt
       - name: check content (2nd)
         run: |
           cat dir/test.txt
