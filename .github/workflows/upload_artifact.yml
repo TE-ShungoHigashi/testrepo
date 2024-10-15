@@ -2,6 +2,7 @@ name: upload artifact
 
 on:
   push:
+  workflow_dispatch:
 env:
   test: false
 jobs:
@@ -9,23 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          if [[ ${{startsWith(env.test, 'f')}} ]]; then
-            echo true
-          else
-            echo false
-          fi
-          if [[ ${{startsWith(env.test, 't')}} ]]; then
-            echo true
-          else
-            echo false
-          fi
-          if [[ ${{startsWith(env.test, 'f')}} = 'false' ]]; then
-            echo true
-          else
-            echo false
-          fi
-          if [[ ${{startsWith(env.test, 'f')}} = 'true' ]]; then
-            echo true
-          else
-            echo false
-          fi
+          echo "TEST1=hoge1" >> $GITHUB_ENV
+          echo "TEST2=/${TEST1}" >> $GITHUB_ENV
+      - run:
+          echo TEST1=${TEST1}
+          echo TEST2=${TEST2}
