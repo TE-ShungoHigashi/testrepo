@@ -12,6 +12,8 @@ jobs:
       - run: |
           echo "TEST1=hoge1" >> $GITHUB_ENV
           echo "TEST2=/${TEST1}" >> $GITHUB_ENV
-      - run:
+      - name: test
+        # if: 'aaaa' == 'aaaa'
+        run:
           echo TEST1=${TEST1}
           echo TEST2=${TEST2}
