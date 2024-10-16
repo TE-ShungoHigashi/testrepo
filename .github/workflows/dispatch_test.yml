@@ -23,6 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{inputs.val}}
-      - uses: actions/checkout@v4
-        with:
-          ref: v1.0
+      - if: inputs.val
+        run: echo not empty
+        
