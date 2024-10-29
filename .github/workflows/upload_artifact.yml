@@ -15,7 +15,7 @@ jobs:
         with:
           path: hogepiyo
           sparse-checkout: dir/
-          #sparse-checkout-cone-mode: false
+          sparse-checkout-cone-mode: false
       - run: ls -R
       - run: |
           echo "TEST1=hoge1" >> $GITHUB_ENV
