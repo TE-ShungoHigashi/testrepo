@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: hogepiyo
-          sparse-checkout: /hanako.md
-          sparse-checkout-cone-mode: false
+          sparse-checkout: dir
+          #sparse-checkout-cone-mode: false
       - run: ls -R
       - run: |
           echo "TEST1=hoge1" >> $GITHUB_ENV
