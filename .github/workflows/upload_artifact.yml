@@ -11,6 +11,12 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          path: hogepiyo
+          sparse-checkout: dir/hanako.md
+          sparse-checkout-cone-mode: false
+      - run: ls -R
       - run: |
           echo "TEST1=hoge1" >> $GITHUB_ENV
           echo "TEST2=/${TEST1}" >> $GITHUB_ENV
