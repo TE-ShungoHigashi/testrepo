@@ -24,6 +24,7 @@ jobs:
           sparse-checkout: /examples/mkfsimg.py
           sparse-checkout-cone-mode: false
           ref: v0.10.3
+      - run: ls -R
       - run: |
           echo "TEST1=hoge1" >> $GITHUB_ENV
           echo "TEST2=/${TEST1}" >> $GITHUB_ENV
