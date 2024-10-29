@@ -17,6 +17,13 @@ jobs:
           sparse-checkout: dir/
           sparse-checkout-cone-mode: false
       - run: ls -R
+      - name: Checkout mkfsimg.py
+        uses: actions/checkout@v4
+        with:
+          repository: jrast/littlefs-python
+          sparse-checkout: /examples/mkfsimg.py
+          sparse-checkout-cone-mode: false
+          ref: v0.10.3
       - run: |
           echo "TEST1=hoge1" >> $GITHUB_ENV
           echo "TEST2=/${TEST1}" >> $GITHUB_ENV
