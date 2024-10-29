@@ -22,8 +22,8 @@ jobs:
         with:
           repository: jrast/littlefs-python
           path: littlefs-python
-          sparse-checkout: /examples/mkfsimg.py
-          sparse-checkout-cone-mode: false
+          sparse-checkout: /examples
+          #sparse-checkout-cone-mode: false
           ref: v0.10.3
       - run: ls -R
       - run: |
