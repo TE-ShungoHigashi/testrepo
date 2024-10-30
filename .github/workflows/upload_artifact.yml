@@ -52,4 +52,10 @@ jobs:
         with:
           path: dir
           key: cache_test
-        
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test
+          path: |
+            botu/dir/hanako.md
+            botu/dir/hoge/hanako.md
