@@ -57,5 +57,4 @@ jobs:
         with:
           name: test
           path: |
-            botu/dir/hanako.md
-            botu/dir/hoge/hanako.md
+            botu
