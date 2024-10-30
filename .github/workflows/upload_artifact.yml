@@ -27,6 +27,11 @@ jobs:
           ref: v0.10.3
       - run: ls -R
       - run: |
+          mkdir dist
+          wget -nv --output-document allure-commandline.tgz https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.26.0/allure-commandline-2.26.0.tgz
+          tar -xf allure-commandline.tgz --strip-components=1 --directory dist
+          dist/bin/allure --help
+      - run: |
           echo "TEST1=hoge1" >> $GITHUB_ENV
           echo "TEST2=/${TEST1}" >> $GITHUB_ENV
       - name: test
