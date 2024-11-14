@@ -11,6 +11,7 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+      - run: git --version
       - uses: actions/checkout@v4
         with:
           path: hogepiyo
