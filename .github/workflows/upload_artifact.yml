@@ -19,6 +19,10 @@ jobs:
           sparse-checkout-cone-mode: false
       - run: ls -R
         if: ${{ startsWith(inputs.content, 'h') }}
+      - run: |
+          set +e
+          exit 1
+          echo hoge
       - name: Checkout mkfsimg.py
         uses: actions/checkout@v4
         with:
