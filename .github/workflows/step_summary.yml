@@ -1,0 +1,16 @@
+name: upload artifact
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: first summary
+        run: echo "first summary" >> $GITHUB_STEP_SUMMARY
+      - name: sleep
+        run: sleep 30
+      - name: second summary
+        run: echo "second summary" >> $GITHUB_STEP_SUMMARY
+    
