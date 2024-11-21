@@ -2,6 +2,12 @@ name: summary test
 
 on:
   workflow_dispatch:
+    inputs:
+      presleep:
+        type: number
+        default: '0'
+      sleep:
+        type: number
 
 jobs:
   job1:
@@ -10,13 +16,18 @@ jobs:
       - name: first summary
         run: echo "first summary" >> $GITHUB_STEP_SUMMARY
       - name: presleep
-        run: sleep 30
+        run: |
+          sleep 30
+          exit ${{inputs.presleep}}
       - name: sleep
         id: sleep
-        run: sleep 30
+        run: |
+          sleep 30
+          exit ${{inputs.sleep}}
       - name: second summary
         run: echo "second summary" >> $GITHUB_STEP_SUMMARY
       - name: check outcome
+        if: always()
         run: echo "${{steps.sleep.outcome}}"
         
     
