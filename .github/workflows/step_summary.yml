@@ -8,6 +8,7 @@ on:
         default: '0'
       sleep:
         type: number
+        default: '0'
 
 jobs:
   job1:
