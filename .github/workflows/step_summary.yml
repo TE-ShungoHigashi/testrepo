@@ -17,6 +17,6 @@ jobs:
       - name: second summary
         run: echo "second summary" >> $GITHUB_STEP_SUMMARY
       - name: check outcome
-        run: echo "${{steps.pytest.outcome}}"
+        run: echo "${{steps.sleep.outcome}}"
         
     
