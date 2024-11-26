@@ -15,9 +15,10 @@ jobs:
       - id: tee
         run: |
           echo "test1=test1" | tee -a $GITHUB_OUTPUT
-          echo "test2=test2" | tee -a $GITHUB_OUTPUT
+          echo "test2=test2" | tee -a $GITHUB_ENV
       - run: |
-          echo ${{ steps.tee.outputs.test1}} ${{ steps.tee.outputs.test2 }}
+          echo ${{ steps.tee.outputs.test1}}
+          echo ${{ env.test2 }}
       - run: |
           [[ -n ${{inputs.sleep}} ]] && echo nonempty || echo empty
       - uses: actions/checkout@v4
