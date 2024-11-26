@@ -14,6 +14,8 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+      - run: |
+          [[ -n ${{inputs.sleep}} ]] && echo nonempty || echo empty
       - uses: actions/checkout@v4
       - uses: ./.github/actions/tmp1
       - name: first summary
