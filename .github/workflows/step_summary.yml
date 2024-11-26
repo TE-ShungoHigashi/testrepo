@@ -4,11 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       presleep:
-        type: number
-        default: '0'
+        type: string
       sleep:
-        type: number
-        default: '0'
+        type: string
 
 jobs:
   job1:
