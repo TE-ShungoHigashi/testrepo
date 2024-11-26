@@ -1,0 +1,15 @@
+name: tmp1
+description: hoge
+
+inputs:
+  ref:
+    description: "ref"
+    required: false
+    default: ${{ github.ref }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: test
+      shell: bash
+      run: echo ${{ inputs.ref }}
