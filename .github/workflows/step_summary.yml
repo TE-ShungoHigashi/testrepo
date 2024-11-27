@@ -22,6 +22,8 @@ jobs:
       - run: |
           [[ -n ${{inputs.sleep}} ]] && echo nonempty || echo empty
       - uses: actions/checkout@v4
+        with:
+          ref: refs/tags/v1.0
       - uses: ./.github/actions/tmp1
       - name: first summary
         run: echo "first summary" >> $GITHUB_STEP_SUMMARY
