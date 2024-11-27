@@ -20,7 +20,7 @@ jobs:
           echo ${{ steps.tee.outputs.test1}}
           echo ${{ env.test2 }}
       - run: |
-          [[ -n ${{inputs.sleep}} ]] && echo nonempty || echo empty
+          [[ -n "${{inputs.sleep}}" ]] && echo nonempty || echo empty
       - uses: actions/checkout@v4
         with:
           ref: refs/tags/v1.0
