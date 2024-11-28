@@ -15,6 +15,8 @@ runs:
       run: echo ${{ inputs.ref }}
     - name: continue-on-error
       continue-on-error: true
+      shell: bash
       run: exit 1
     - name: after
+      shell: bash
       run: echo hello world
