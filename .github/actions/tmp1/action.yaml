@@ -1,6 +1,7 @@
 name: tmp1
-description: 'asdf
-  asdff laksdjf'
+description: >- 
+  asdf
+  asdff laksdjf
 
 inputs:
   ref:
