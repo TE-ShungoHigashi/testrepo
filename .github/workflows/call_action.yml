@@ -2,10 +2,18 @@ name: call composite action
 
 on:
   workflow_dispatch:
+    inputs:
+      field:
+        type: choice
+        options: ["A", "B"]
 
 jobs:
   call_action:
     runs-on: ubuntu-latest
+    env:
+      test: hoge
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/tmp1
+      - if: github.ref == 'ref/heads/maina' || github.ref == 'refs/heads/release'
+        run: echo '${{env.test}}'
