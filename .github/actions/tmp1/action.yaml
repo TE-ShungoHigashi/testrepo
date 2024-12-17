@@ -13,6 +13,7 @@ runs:
   using: 'composite'
   steps:
     - name: hashFiles
+      shell: bash
       run: ls -l && echo ${{ hashFiles('README.md') }}
     - name: test
       shell: bash
