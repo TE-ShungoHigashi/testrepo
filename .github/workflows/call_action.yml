@@ -14,6 +14,4 @@ jobs:
       test: hoge
     steps:
       - uses: actions/checkout@v4
-      - if: github.ref == 'ref/heads/maina' || inputs.field == 'A'
-        run: echo '${{env.test}}'
-      #- uses: ./.github/actions/tmp1
+      - uses: ./.github/actions/tmp1
