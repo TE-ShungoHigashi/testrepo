@@ -15,7 +15,7 @@ runs:
     - name: hashFiles
       shell: bash
       working-directory: dir
-      run: ls -l && echo ${{ hashFiles('../README.md') }}
+      run: ls -l && echo ${{ hashFiles('hanako.md') }}
     - name: test
       shell: bash
       run: echo ${{ inputs.ref }}
