@@ -14,7 +14,7 @@ runs:
   steps:
     - name: hashFiles
       shell: bash
-      working-directory: .
+      working-directory: dir
       run: ls -l && echo ${{ hashFiles('hanako.md') }}
     - name: test
       shell: bash
