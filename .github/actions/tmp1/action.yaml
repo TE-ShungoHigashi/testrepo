@@ -12,6 +12,8 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: hashFiles
+      run: ls -l && echo ${{ hashFiles('README.md') }}
     - name: test
       shell: bash
       run: echo ${{ inputs.ref }}
