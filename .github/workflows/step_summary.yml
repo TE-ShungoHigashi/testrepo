@@ -15,7 +15,7 @@ jobs:
       - id: array
         run: |
           list=(hoge{1,2,3})
-          echo "list=$list" | tee -a $GITHUB_OUTPUT
+          echo "list=${list[@]}" | tee -a $GITHUB_OUTPUT
       - run: |
           list="${{ steps.array.outputs.list }}"
           touch $list
