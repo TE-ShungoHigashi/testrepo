@@ -12,6 +12,15 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+      - id: array
+        run: |
+          list=(hoge{1,2,3})
+          echo "list=$list" | tee -a $GITHUB_OUTPUT
+      - run: |
+          list="${{ steps.array.outputs.list }}"
+          touch $list
+          touch "$list"
+          ls
       - id: tee
         run: |
           echo "test1=test1" | tee -a $GITHUB_OUTPUT
