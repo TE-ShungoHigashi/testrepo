@@ -15,11 +15,10 @@ jobs:
       - id: array
         run: |
           list=(hoge{1,2,3})
-          echo "list=${list[@]}" | tee -a $GITHUB_OUTPUT
+          echo "list_json=$(jq -cn '$ARGS.positional' --args "${list[@]")" | tee -a $GITHUB_OUTPUT
       - run: |
-          list="${{ steps.array.outputs.list }}"
-          touch $list
-          touch "$list"
+          list=("$(echo "${{ steps.array.outputs.list_json }}" | jq -r '.[]')")
+          touch "${list[@]}"
           ls
       - id: tee
         run: |
