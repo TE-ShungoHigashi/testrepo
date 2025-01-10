@@ -14,7 +14,6 @@ jobs:
     steps:
       - id: array
         run: |
-          
           list=(hoge{1,2,3})
           echo "list_json=$(jq -cn '$ARGS.positional' --args "${list[@]}")" | tee -a $GITHUB_OUTPUT
       - if: ${{ steps.array.outputs.hoge != 'true' }}
@@ -23,6 +22,14 @@ jobs:
           list=("$(echo '${{ steps.array.outputs.list_json }}' | jq -r '.[]')")
           touch "${list[@]}"
           ls
+      - id: check_sleep
+        run: sleep 10
+      - id: after_sleep
+        run: echo hoge
+      - if: ${{ always() }}
+        run: |
+          echo check_sleep: ${{ steps.check_sleep.outcome }}
+          echo after_sleep: ${{ steps.after_sleep.outcome }}
       - id: tee
         run: |
           echo "test1=test1" | tee -a $GITHUB_OUTPUT
