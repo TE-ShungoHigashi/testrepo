@@ -13,5 +13,10 @@ jobs:
     env:
       test: hoge
     steps:
+      - id: twice_output
+        run: |
+          echo "val=hoge" >> $GITHUB_OUTPUT
+          echo "val=piyo" >> $GITHUB_OUTPUT
+      - run: echo "${{steps.twice_output.outputs.val}}" 
       - uses: actions/checkout@v4
       - uses: ./.github/actions/tmp1
