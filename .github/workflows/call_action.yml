@@ -18,7 +18,7 @@ jobs:
         run: |
           echo "val=hoge" >> $GITHUB_OUTPUT
           echo "val=piyo" >> $GITHUB_OUTPUT
-          exit 1
+          exit 0
       - run: echo "${{steps.twice_output.outputs.val}}" 
       - uses: actions/checkout@v4
       - uses: ./.github/actions/tmp1
