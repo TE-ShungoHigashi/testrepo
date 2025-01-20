@@ -13,11 +13,6 @@ jobs:
     env:
       test: hoge
     steps:
-      - env:
-         test: 'echo hoge'
-        run: |
-          ${{ env.test }}
-          "${{env.test }}"
       - id: twice_output
         continue-on-error: true
         run: |
