@@ -6,6 +6,8 @@ on:
       field:
         type: choice
         options: ["A", "B"]
+      injection:
+        type: string
 
 jobs:
   call_action:
@@ -13,6 +15,8 @@ jobs:
     env:
       test: hoge
     steps:
+      - run: |
+          echo ${{ inputs.injection }} 
       - id: twice_output
         continue-on-error: true
         run: |
