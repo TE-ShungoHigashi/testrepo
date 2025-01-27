@@ -16,7 +16,7 @@ jobs:
       test: hoge
     steps:
       - run: |
-          echo ${{ inputs.injection }} 
+          echo "${{ inputs.injection }}"
       - id: twice_output
         continue-on-error: true
         run: |
