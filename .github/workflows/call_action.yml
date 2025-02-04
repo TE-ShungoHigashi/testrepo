@@ -15,6 +15,10 @@ jobs:
     env:
       test: hoge
     steps:
+      - name: test ${{ env.env1 }}
+        env:
+          env1: hello_world
+        run: echo hello
       - run: |
           echo "${{ inputs.injection }}"
       - id: twice_output
