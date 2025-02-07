@@ -15,6 +15,9 @@ jobs:
     env:
       test: hoge
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: testtag4
       - name: test ${{ env.env1 }}
         env:
           env1: hello_world
