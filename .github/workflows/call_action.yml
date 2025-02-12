@@ -15,10 +15,8 @@ jobs:
     env:
       test: hoge
     steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/tmp1
       - run: |
-          sleep 30
-          exit 1
-      - if: always()
-        run: echo always
-      - if: ${{ ! cancelled() }}
-        run: echo not cancelled
+          echo hello
+      
