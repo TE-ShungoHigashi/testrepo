@@ -15,5 +15,10 @@ jobs:
     env:
       test: hoge
     steps:
-      - continue-on-error: true
-        run: exit 1
+      - run: |
+          sleep 30
+          exit 1
+      - if: always()
+        run: echo always
+      - if: ${{ ! cancelled() }}
+        run: echo not cancelled
