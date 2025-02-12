@@ -15,21 +15,5 @@ jobs:
     env:
       test: hoge
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: testtag4
-      - name: test ${{ env.env1 }}
-        env:
-          env1: hello_world
-        run: echo hello
-      - run: |
-          echo "${{ inputs.injection }}"
-      - id: twice_output
-        continue-on-error: true
-        run: |
-          echo "val=hoge" >> $GITHUB_OUTPUT
-          echo "val=piyo" >> $GITHUB_OUTPUT
-          exit 0
-      - run: echo "${{steps.twice_output.outputs.val}}" 
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/tmp1
+      - continue-on-error: true
+        run: exit 1
