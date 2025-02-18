@@ -10,3 +10,14 @@ runs:
       shell: bash
       if: always()
       run: echo "step D"
+    - name: step E
+      shell: bash
+      if: always()
+      run: echo "step E"; exit 1
+    - name: step F
+      shell: bash
+      run: echo "step F"
+    - name: step G
+      shell: bash
+      if: always()
+      run: echo "step G"
