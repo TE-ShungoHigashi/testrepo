@@ -1,17 +1,12 @@
 name: tmp1
-description: >- 
-  asdf
-  asdff laksdjf
-
-inputs:
-  ref:
-    description: 'This is ${ref}'
-    required: false
-    default: ${{ github.ref }}
 
 runs:
   using: 'composite'
   steps:
-    - name: env
+    - name: step C
       shell: bash
-      run: echo "testenv=12345" | tee -a $GITHUB_ENV
+      run: echo "step C"
+    - name: step D
+      shell: bash
+      if: always()
+      run: echo "step D"
