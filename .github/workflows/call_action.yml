@@ -2,6 +2,11 @@ name: call composite action
 
 on:
   workflow_dispatch:
+    inputs:
+       exit:
+         type: choice
+         options: ["0", "1"]
+         default: "0"
 
 jobs:
   call_action:
@@ -9,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: step A
-        run: sleep 20; exit 1
+        run: sleep 20; exit ${{ inputs.exit }}
       - name: step B
         if: always()
         uses: ./.github/actions/tmp1
