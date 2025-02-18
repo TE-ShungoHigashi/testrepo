@@ -16,6 +16,6 @@ jobs:
       - name: step A
         run: sleep 20; exit ${{ inputs.exit }}
       - name: step B
-        #if: always()
+        if: always()
         uses: ./.github/actions/tmp1
       
