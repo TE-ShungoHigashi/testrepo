@@ -13,8 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          test=$(echo 'This is "${{runner.name}}"')
+          test=$(echo '${{runner.name}}')
           echo $test
+          echo '${{runner.os}}'
       - uses: actions/checkout@v4
       - name: step A
         run: sleep 20; exit ${{ inputs.exit }}
