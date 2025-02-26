@@ -12,6 +12,9 @@ jobs:
   call_action:
     runs-on: ubuntu-latest
     steps:
+      - run: |
+          test=$(echo 'This is "${{runner.name}}"')
+          echo $test
       - uses: actions/checkout@v4
       - name: step A
         run: sleep 20; exit ${{ inputs.exit }}
