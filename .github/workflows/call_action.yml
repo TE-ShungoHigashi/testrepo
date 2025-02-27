@@ -16,6 +16,10 @@ jobs:
           test=$(echo '${{runner.name}}')
           echo $test
           echo '${{runner.os}}'
+      - run: pwd && ls -l
+      - uses: actions/checkout@v4
+        with:
+          path: ~/test
       - uses: actions/checkout@v4
         with:
           path: ~/test
