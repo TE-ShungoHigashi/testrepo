@@ -18,12 +18,12 @@ jobs:
           echo '${{runner.os}}'
       - run: pwd && ls -l
       - working-directory: /home/runner
-        run: mkdir test && echo 'hogehoge' >> test/text.txt && ls -lR
+        run: pwd && mkdir test && echo 'hogehoge' >> test/text.txt && ls -l test
       - uses: actions/checkout@v4
         with:
           path: ~/test
       - working-directory: ~/
-        run: ls -lR .
+        run: pwd && ls -l .
       - name: step A
         run: sleep 20; exit ${{ inputs.exit }}
       - name: step B
