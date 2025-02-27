@@ -18,9 +18,10 @@ jobs:
           echo '${{runner.os}}'
       - run: pwd && ls -l
       - working-directory: /home/runner
-        run: pwd && mkdir test && echo 'hogehoge' >> test/text.txt && ls -l test
+        run: pwd # && mkdir test && echo 'hogehoge' >> test/text.txt && ls -l test
       - uses: actions/checkout@v4
         with:
+          repository: espressif/esptool
           path: /home/runner/test
       - working-directory: /home/runner/test
         run: pwd && ls -l .
