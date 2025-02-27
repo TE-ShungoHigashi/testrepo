@@ -21,8 +21,8 @@ jobs:
         run: pwd && mkdir test && echo 'hogehoge' >> test/text.txt && ls -l test
       - uses: actions/checkout@v4
         with:
-          path: ~/test
-      - working-directory: ~/
+          path: /home/runner/test
+      - working-directory: /home/runner/test
         run: pwd && ls -l .
       - name: step A
         run: sleep 20; exit ${{ inputs.exit }}
