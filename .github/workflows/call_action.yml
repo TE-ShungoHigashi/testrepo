@@ -17,6 +17,10 @@ jobs:
           echo $test
           echo '${{runner.os}}'
       - uses: actions/checkout@v4
+        with:
+          path: ~/test
+      - working-directory: ~/
+        run: ls -lR .
       - name: step A
         run: sleep 20; exit ${{ inputs.exit }}
       - name: step B
