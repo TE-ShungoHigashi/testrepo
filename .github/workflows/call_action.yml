@@ -17,9 +17,8 @@ jobs:
           echo $test
           echo '${{runner.os}}'
       - run: pwd && ls -l
-      - uses: actions/checkout@v4
-        with:
-          path: ~/test
+      - working-directory: ~/
+        run: mkdir test && echo 'hogehoge' >> test/text.txt && ls -lR
       - uses: actions/checkout@v4
         with:
           path: ~/test
