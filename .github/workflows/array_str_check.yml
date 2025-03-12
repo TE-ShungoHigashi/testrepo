@@ -1,0 +1,52 @@
+name: array string passing test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  caller:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: create array
+        id: create_array
+        run: |
+          set -x
+          array=(a b "c d" -e ffff --gh 'i j k')
+          printf "%s\n" "${array[@]}"
+          echo "opt_str1=${array[@]}" | tee $GITHUB_OUTPUT
+          echo "opt_str2=${array[*]}" | tee $GITHUB_OUTPUT
+          echo opt_str3="${array[@]}" | tee $GITHUB_OUTPUT
+          echo opt_str4="${array[*]}" | tee $GITHUB_OUTPUT
+          echo "opt_str5=\"${array[@]}\"" | tee $GITHUB_OUTPUT
+          echo "opt_str6=\"${array[*]}\"" | tee $GITHUB_OUTPUT
+
+      - name: call actions
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str1 }}
+
+      - name: call actions
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str2 }}
+
+      - name: call actions
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str3 }}
+
+      - name: call actions
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str4 }}
+
+      - name: call actions
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str5 }}
+
+      - name: call actions
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str6 }}

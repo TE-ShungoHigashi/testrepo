@@ -1,0 +1,23 @@
+name: tmp1
+
+inputs:
+  opt_str:
+    description: space-delimited string for option arguments
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: echo string
+      shell: bash
+      run: echo ${{inputs.opt_str}}
+    - name: expand string
+      shell: bash
+      run: printf "%s\n" ${{inputs.opt_str}}
+    - name: expand string with declare
+      shell: bash
+      env:
+        opt_str: ${{inputs.opt_str}}
+      run: |
+        declare -a "array=($opt_str)"
+        declare -p array
