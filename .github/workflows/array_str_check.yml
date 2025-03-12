@@ -14,54 +14,45 @@ jobs:
           set -x
           array=(a b "c d" -e ffff --gh 'i j k')
           printf "%s\n" "${array[@]}"
-          echo "opt_str1=${array[@]}" | tee $GITHUB_OUTPUT
-          echo "opt_str2=${array[*]}" | tee $GITHUB_OUTPUT
-          echo opt_str3="${array[@]}" | tee $GITHUB_OUTPUT
-          echo opt_str4="${array[*]}" | tee $GITHUB_OUTPUT
-          echo "opt_str5=\"${array[@]}\"" | tee $GITHUB_OUTPUT
-          echo "opt_str6=\"${array[*]}\"" | tee $GITHUB_OUTPUT
-          echo "opt_str7=\"a b \\\"c d\\\" -e ffff --gh 'i j k'\"" | tee $GITHUB_OUTPUT
+          echo manu_str1=\"a b \\\"c d\\\" -e ffff --gh \'i j k\'\" | tee $GITHUB_OUTPUT # 'はエスケープ必要 注意
+          echo "manu_str2=\"a b \\\"c d\\\" -e ffff --gh 'i j k'\"" | tee $GITHUB_OUTPUT # best
+          # 文字列がシングルクオートに囲まれてるときにシングルクオートのエスケープはできない 一度閉じる必要がある
 
       - name: check opt_str
         run: |
           set -x
-          printf "%s\n" ${{steps.create_array.outputs.opt_str1}}
-          printf "%s\n" ${{steps.create_array.outputs.opt_str2}}
-          printf "%s\n" ${{steps.create_array.outputs.opt_str3}}
-          printf "%s\n" ${{steps.create_array.outputs.opt_str4}}
-          printf "%s\n" ${{steps.create_array.outputs.opt_str5}}
-          printf "%s\n" ${{steps.create_array.outputs.opt_str6}}
-          printf "%s\n" ${{steps.create_array.outputs.opt_str7}}
+          printf "%s\n" ${{steps.create_array.outputs.manu_str1}}
+          printf "%s\n" ${{steps.create_array.outputs.manu_str2}}
 
       - name: call actions
         uses: ./.github/actions/tmp2
         with:
-          opt_str: ${{ steps.create_array.outputs.opt_str1 }}
+          opt_str: ${{ steps.create_array.outputs.manu_str1 }}
 
       - name: call actions
         uses: ./.github/actions/tmp2
         with:
-          opt_str: ${{ steps.create_array.outputs.opt_str2 }}
+          opt_str: ${{ steps.create_array.outputs.manu_str2 }}
 
-      - name: call actions
-        uses: ./.github/actions/tmp2
-        with:
-          opt_str: ${{ steps.create_array.outputs.opt_str3 }}
+      # - name: call actions
+      #   uses: ./.github/actions/tmp2
+      #   with:
+      #     opt_str: ${{ steps.create_array.outputs.opt_str3 }}
 
-      - name: call actions
-        uses: ./.github/actions/tmp2
-        with:
-          opt_str: ${{ steps.create_array.outputs.opt_str4 }}
+      # - name: call actions
+      #   uses: ./.github/actions/tmp2
+      #   with:
+      #     opt_str: ${{ steps.create_array.outputs.opt_str4 }}
 
-      - name: call actions
-        uses: ./.github/actions/tmp2
-        with:
-          opt_str: ${{ steps.create_array.outputs.opt_str5 }}
+      # - name: call actions
+      #   uses: ./.github/actions/tmp2
+      #   with:
+      #     opt_str: ${{ steps.create_array.outputs.opt_str5 }}
 
-      - name: call actions
-        uses: ./.github/actions/tmp2
-        with:
-          opt_str: ${{ steps.create_array.outputs.opt_str6 }}
+      # - name: call actions
+      #   uses: ./.github/actions/tmp2
+      #   with:
+      #     opt_str: ${{ steps.create_array.outputs.opt_str6 }}
 
       - name: call actions manually (OK)
         uses: ./.github/actions/tmp2
