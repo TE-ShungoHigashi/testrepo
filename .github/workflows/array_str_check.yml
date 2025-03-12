@@ -20,6 +20,18 @@ jobs:
           echo opt_str4="${array[*]}" | tee $GITHUB_OUTPUT
           echo "opt_str5=\"${array[@]}\"" | tee $GITHUB_OUTPUT
           echo "opt_str6=\"${array[*]}\"" | tee $GITHUB_OUTPUT
+          echo "opt_str7=\"a b \\\"c d\\\" -e ffff --gh 'i j k'\"" | tee $GITHUB_OUTPUT
+
+      - name: check opt_str
+        run: |
+          set -x
+          printf "%s\n" ${{steps.create_array.outputs.opt_str1}}
+          printf "%s\n" ${{steps.create_array.outputs.opt_str2}}
+          printf "%s\n" ${{steps.create_array.outputs.opt_str3}}
+          printf "%s\n" ${{steps.create_array.outputs.opt_str4}}
+          printf "%s\n" ${{steps.create_array.outputs.opt_str5}}
+          printf "%s\n" ${{steps.create_array.outputs.opt_str6}}
+          printf "%s\n" ${{steps.create_array.outputs.opt_str7}}
 
       - name: call actions
         uses: ./.github/actions/tmp2
@@ -50,3 +62,14 @@ jobs:
         uses: ./.github/actions/tmp2
         with:
           opt_str: ${{ steps.create_array.outputs.opt_str6 }}
+
+      - name: call actions manually (OK)
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: a b "c d" -e ffff --gh 'i j k'
+
+      # 文字列を''で囲みたいなら({{}}記法のときは必須)、'は''でエスケープする
+      - name: call actions manually (OK)
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: 'a b "c d" -e ffff --gh ''i j k'''
