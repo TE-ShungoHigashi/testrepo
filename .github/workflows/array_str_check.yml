@@ -14,53 +14,98 @@ jobs:
           set -x
           array=(a b "c d" -e ffff --gh 'i j k')
           printf "%s\n" "${array[@]}"
-          echo manu_str1=\"a b \\\"c d\\\" -e ffff --gh \'i j k\'\" | tee $GITHUB_OUTPUT # 'はエスケープ必要 注意
-          echo "manu_str2=\"a b \\\"c d\\\" -e ffff --gh 'i j k'\"" | tee $GITHUB_OUTPUT # best
-          # 文字列がシングルクオートに囲まれてるときにシングルクオートのエスケープはできない 一度閉じる必要がある
+          echo "ex0=hello world" | tee -a $GITHUB_OUTPUT #OK "ex0": "hello world",
+          echo "ex1=a b \"c d\" -e ffff --gh 'i j k'" | tee -a $GITHUB_OUTPUT #OK "ex1": "a b \"c d\" -e ffff --gh 'i j k'",
+
+          # 要素を文字列展開するときにクオーテーションが消えてしまうので、空白入の要素がそこで切られてしまう
+          echo "opt_str0=${array[*]}" | tee -a $GITHUB_OUTPUT #NG "opt_str0": "a b c d -e ffff --gh i j k"
+          echo "opt_str1=${array[@]}" | tee -a $GITHUB_OUTPUT #NG "opt_str1": "a b c d -e ffff --gh i j k",
+
+          # 下記の方法はgithub actionsでしか使えないので注意 shellscirptで同じことをする場合は若干違う(未検証)
+          # 解決方法1
+          # 参考
+          # * https://stackoverflow.com/questions/12985178/bash-quoted-array-expansion
+          # * https://lwn.net/Articles/701009/
+          # 'Q': The expansion is a string that is the value of PARAMETER quoted in a format that can be reused as input. (bash 4.4~)
+          # 変数の値をhoge -> 'hoge' というふうに文字列としてクオートが付いた状態にして展開する。
+          # このとき[*]での展開が正しい こっちは配列が一つの文字列になる
+          echo "opt_str2=${array[*]@Q}" | tee -a $GITHUB_OUTPUT #OK "opt_str2": "'a' 'b' 'c d' '-e' 'ffff' '--gh' 'i j k'"
+
+          # 結果としては同じだが、一般的に一つの文字列にするときに[@]で展開するのはよくない 結合としては opt_str2=a, b, c d, ...という風になっている (printf '%s\n'で出力するとわかる)
+          echo "opt_str3=${array[@]@Q}" | tee -a $GITHUB_OUTPUT #OK "opt_str3": "'a' 'b' 'c d' '-e' 'ffff' '--gh' 'i j k'"
+
+          # 解決方法2
+          # 直接各要素をクオートする ここは[@]となる
+          echo "opt_str4=$(printf "'%s' " "${array[@]}")" | tee -a $GITHUB_OUTPUT #OK "opt_str4": "'a' 'b' 'c d' '-e' 'ffff' '--gh' 'i j k' "
+
+          # おまけ 結果は対応するものと同じ
+          echo opt_str1a="${array[*]}" | tee -a $GITHUB_OUTPUT
+          echo opt_str2a="${array[*]@Q}" | tee -a $GITHUB_OUTPUT
+          echo opt_str4a="$(printf "'%s' " "${array[@]}")" | tee -a $GITHUB_OUTPUT
+
+          # よくない これは\"が"になった状態でシェルが実行される("が相殺できたりする)
+          echo "opt_str2b=\"${array[*]@Q}\"" | tee -a $GITHUB_OUTPUT
+          echo "opt_str4b=\"$(printf "'%s' " "${array[@]}")\"" | tee -a $GITHUB_OUTPUT
 
       - name: check opt_str
+        env:
+          inspect: ${{ toJSON(steps.create_array.outputs) }}
         run: |
-          set -x
-          printf "%s\n" ${{steps.create_array.outputs.manu_str1}}
-          printf "%s\n" ${{steps.create_array.outputs.manu_str2}}
+          echo "$inspect"
 
-      - name: call actions
+      - name: call actions ex0
         uses: ./.github/actions/tmp2
         with:
-          opt_str: ${{ steps.create_array.outputs.manu_str1 }}
+          opt_str: ${{ steps.create_array.outputs.ex0 }}
 
-      - name: call actions
+      - name: call actions ex1
         uses: ./.github/actions/tmp2
         with:
-          opt_str: ${{ steps.create_array.outputs.manu_str2 }}
+          opt_str: ${{ steps.create_array.outputs.ex1 }}
 
-      # - name: call actions
-      #   uses: ./.github/actions/tmp2
-      #   with:
-      #     opt_str: ${{ steps.create_array.outputs.opt_str3 }}
-
-      # - name: call actions
-      #   uses: ./.github/actions/tmp2
-      #   with:
-      #     opt_str: ${{ steps.create_array.outputs.opt_str4 }}
-
-      # - name: call actions
-      #   uses: ./.github/actions/tmp2
-      #   with:
-      #     opt_str: ${{ steps.create_array.outputs.opt_str5 }}
-
-      # - name: call actions
-      #   uses: ./.github/actions/tmp2
-      #   with:
-      #     opt_str: ${{ steps.create_array.outputs.opt_str6 }}
-
-      - name: call actions manually (OK)
+      - name: call actions str0
         uses: ./.github/actions/tmp2
         with:
-          opt_str: a b "c d" -e ffff --gh 'i j k'
+          opt_str: ${{ steps.create_array.outputs.opt_str0 }}
+
+      - name: call actions str1
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str1 }}
+
+      - name: call actions str2
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str2 }}
+
+      - name: call actions str3
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str3 }}
+
+      - name: call actions str4
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str4 }}
+
+      - name: call actions str2b
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str2b }}
+
+      - name: call actions str4b
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: ${{ steps.create_array.outputs.opt_str4b }}
+
+
+      - name: call actions manually pattern1
+        uses: ./.github/actions/tmp2
+        with:
+          opt_str: a b "c d" -e ffff --gh 'i j k' #OK "opt_str": "a b \"c d\" -e ffff --gh 'i j k'"
 
       # 文字列を''で囲みたいなら({{}}記法のときは必須)、'は''でエスケープする
-      - name: call actions manually (OK)
+      - name: call actions manually pattern2
         uses: ./.github/actions/tmp2
         with:
-          opt_str: 'a b "c d" -e ffff --gh ''i j k'''
+          opt_str: 'a b "c d" -e ffff --gh ''i j k''' #OK "opt_str": "a b \"c d\" -e ffff --gh 'i j k'"

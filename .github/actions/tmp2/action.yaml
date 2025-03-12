@@ -8,16 +8,37 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: echo json obj
+      shell: bash
+      env:
+        inspect: ${{ toJSON(inputs) }}
+      run: echo "$inspect"
     - name: echo string
       shell: bash
       run: echo ${{inputs.opt_str}}
     - name: expand string
       shell: bash
-      run: printf "%s\n" ${{inputs.opt_str}}
+      run: |
+        # ここで${{inputs.opt_str}}はクオートしてはいけない
+        # 一番最初に展開される printfの引数(複数個)となる
+        printf "%s\n" ${{inputs.opt_str}}
+    - name: expand string (NG)
+      shell: bash
+      run: |
+        # NG
+        printf "%s\n" "${{inputs.opt_str}}"
+    - name: expand string (NG2)
+      shell: bash
+      env:
+        opt_str: ${{inputs.opt_str}}
+      run: |
+        # NG これはIFSで'...'の間のスペースも区切られる
+        printf "%s\n" ${opt_str}
     - name: expand string with declare
       shell: bash
       env:
         opt_str: ${{inputs.opt_str}}
       run: |
+        # 一般的にシェル配列文字列を配列に復元する方法
         declare -a "array=($opt_str)"
         declare -p array
