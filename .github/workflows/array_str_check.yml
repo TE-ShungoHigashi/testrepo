@@ -12,14 +12,14 @@ jobs:
         id: create_array
         run: |
           set -x
-          array=(a b "c d" -e ffff --gh 'i j k')
+          array=(arg1 arg2 "arg 3" -o val1 --opt2 'v a l' --opt3="v a l" --opt4='v a l' --opt5="val \" '")
           printf "%s\n" "${array[@]}"
           echo "ex0=hello world" | tee -a $GITHUB_OUTPUT #OK "ex0": "hello world",
-          echo "ex1=a b \"c d\" -e ffff --gh 'i j k'" | tee -a $GITHUB_OUTPUT #OK "ex1": "a b \"c d\" -e ffff --gh 'i j k'",
+          echo "ex1=arg1 arg2 \"arg 3\" -o val1 --opt2 'v a l' --opt3=\"v a l\" --opt4='v a l' --opt5=\"val \\\" '" | tee -a $GITHUB_OUTPUT
 
           # 要素を文字列展開するときにクオーテーションが消えてしまうので、空白入の要素がそこで切られてしまう
-          echo "opt_str0=${array[*]}" | tee -a $GITHUB_OUTPUT #NG "opt_str0": "a b c d -e ffff --gh i j k"
-          echo "opt_str1=${array[@]}" | tee -a $GITHUB_OUTPUT #NG "opt_str1": "a b c d -e ffff --gh i j k",
+          echo "opt_str0=${array[*]}" | tee -a $GITHUB_OUTPUT
+          echo "opt_str1=${array[@]}" | tee -a $GITHUB_OUTPUT
 
           # 下記の方法はgithub actionsでしか使えないので注意 shellscirptで同じことをする場合は若干違う(未検証)
           # 解決方法1
@@ -29,14 +29,14 @@ jobs:
           # 'Q': The expansion is a string that is the value of PARAMETER quoted in a format that can be reused as input. (bash 4.4~)
           # 変数の値をhoge -> 'hoge' というふうに文字列としてクオートが付いた状態にして展開する。
           # このとき[*]での展開が正しい こっちは配列が一つの文字列になる
-          echo "opt_str2=${array[*]@Q}" | tee -a $GITHUB_OUTPUT #OK "opt_str2": "'a' 'b' 'c d' '-e' 'ffff' '--gh' 'i j k'"
+          echo "opt_str2=${array[*]@Q}" | tee -a $GITHUB_OUTPUT
 
           # 結果としては同じだが、一般的に一つの文字列にするときに[@]で展開するのはよくない 結合としては opt_str2=a, b, c d, ...という風になっている (printf '%s\n'で出力するとわかる)
-          echo "opt_str3=${array[@]@Q}" | tee -a $GITHUB_OUTPUT #OK "opt_str3": "'a' 'b' 'c d' '-e' 'ffff' '--gh' 'i j k'"
+          echo "opt_str3=${array[@]@Q}" | tee -a $GITHUB_OUTPUT
 
           # 解決方法2
           # 直接各要素をクオートする ここは[@]となる
-          echo "opt_str4=$(printf "'%s' " "${array[@]}")" | tee -a $GITHUB_OUTPUT #OK "opt_str4": "'a' 'b' 'c d' '-e' 'ffff' '--gh' 'i j k' "
+          echo "opt_str4=$(printf "'%s' " "${array[@]}")" | tee -a $GITHUB_OUTPUT
 
           # おまけ 結果は対応するものと同じ
           echo opt_str1a="${array[*]}" | tee -a $GITHUB_OUTPUT
@@ -102,10 +102,10 @@ jobs:
       - name: call actions manually pattern1
         uses: ./.github/actions/tmp2
         with:
-          opt_str: a b "c d" -e ffff --gh 'i j k' #OK "opt_str": "a b \"c d\" -e ffff --gh 'i j k'"
+          opt_str: arg1 arg2 "arg 3" -o val1 --opt2 'v a l' --opt3="v a l" --opt4='v a l' --opt5="val \" '"
 
       # 文字列を''で囲みたいなら({{}}記法のときは必須)、'は''でエスケープする
       - name: call actions manually pattern2
         uses: ./.github/actions/tmp2
         with:
-          opt_str: 'a b "c d" -e ffff --gh ''i j k''' #OK "opt_str": "a b \"c d\" -e ffff --gh 'i j k'"
+          opt_str: 'arg1 arg2 "arg 3" -o val1 --opt2 ''v a l'' --opt3="v a l" --opt4=''v a l'' --opt5="val \" ''"'
