@@ -9,25 +9,30 @@ runs:
   using: 'composite'
   steps:
     - name: echo json obj
+      continue-on-error: true
       shell: bash
       env:
         inspect: ${{ toJSON(inputs) }}
       run: echo "$inspect"
     - name: echo string
+      continue-on-error: true
       shell: bash
       run: echo ${{inputs.opt_str}}
     - name: expand string
+      continue-on-error: true
       shell: bash
       run: |
-        # ここで${{inputs.opt_str}}はクオートしてはいけない
+        # ここで{{inputs.opt_str}}はクオートしてはいけない 正解だがセキュアでない
         # 一番最初に展開される printfの引数(複数個)となる
         printf "%s\n" ${{inputs.opt_str}}
     - name: expand string (NG)
+      continue-on-error: true
       shell: bash
       run: |
-        # NG
+        # NG "が相殺される可能性がある
         printf "%s\n" "${{inputs.opt_str}}"
     - name: expand string (NG2)
+      continue-on-error: true
       shell: bash
       env:
         opt_str: ${{inputs.opt_str}}
@@ -35,10 +40,11 @@ runs:
         # NG これはIFSで'...'の間のスペースも区切られる
         printf "%s\n" ${opt_str}
     - name: expand string with declare
+      continue-on-error: true
       shell: bash
       env:
         opt_str: ${{inputs.opt_str}}
       run: |
-        # 一般的にシェル配列文字列を配列に復元する方法
+        # 一般的にシェル配列文字列を配列に復元する方法 これが正解かつセキュア
         declare -a "array=($opt_str)"
         declare -p array
