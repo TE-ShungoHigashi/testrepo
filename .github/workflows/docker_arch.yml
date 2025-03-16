@@ -2,6 +2,9 @@ name: Docker multi-arch check
 
 on:
   push:
+    paths:
+      - .github/workflows/docker_arch.yml
+      - Dockerfile
   workflow_dispatch:
 
 jobs:
@@ -46,3 +49,6 @@ jobs:
           no-cache: false
         #   cache-from: type=gha
         #   cache-to: type=gha,mode=min
+
+        # 呼び出し元でtcpdump??
+        # uname -m
