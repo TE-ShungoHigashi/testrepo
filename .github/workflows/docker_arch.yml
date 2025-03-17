@@ -27,6 +27,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check platform
+        run: uname -m
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
@@ -51,4 +54,3 @@ jobs:
         #   cache-to: type=gha,mode=min
 
         # 呼び出し元でtcpdump??
-        # uname -m
