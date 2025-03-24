@@ -27,6 +27,8 @@ jobs:
         run: echo not empty
       - if: ! inputs.val == '2'
         run: echo not inputs.val
+      - if: inputs.val != '2'
+        run: echo not inputs.val
       - if: inputs.val == '2' || inputs.val == '3'
         run: echo hello world
         
