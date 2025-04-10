@@ -3,9 +3,26 @@ on:
   workflow_dispatch:
 
 jobs:
+  # caller:
+  #   name: 'Call other repo workflow via workflow_call'
+  #   uses: TE-ShungoHigashi/private_testrepo/.github/workflows/helloworld.yml@main
+  #   with:
+  #     name: "John"
+
   caller:
-    name: 'Call other repo workflow via workflow_call'
-    uses: TE-ShungoHigashi/private_testrepo/.github/workflows/helloworld.yml@main
-    with:
-      name: "John"
-    secrets: inherit
+    name: Call other repo workflow via workflow_dispatch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ secrets.TEST_CALL_WORKFLOW_APPID }}
+          private-key: ${{ secrets.TEST_CALL_WORKFLOW_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+      - env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          gh workflow run helloworld.yml \
+            --repo TE-ShungoHigashi/private_testrepo \
+            --ref main \
+            -f "name=Taro"
