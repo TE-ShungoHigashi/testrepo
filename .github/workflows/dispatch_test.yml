@@ -1,37 +1,10 @@
 name: dispatch_test
 on:
-  push:
   workflow_dispatch:
-    inputs:
-      val:
-        required: false
-        type: string
-      option_example:
-        required: false
-        type: choice
-        default: "1"
-        options: ["1", "2"]
-  workflow_call:
-    inputs:
-      val:
-        required: false
-        type: string
-        default: This is default value
 
 jobs:
-  job1:
-    name: 'Show inputs.val'
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo ${{inputs.val}}
-          echo "::warning title=A B C::W a r n i n g"
-      - if: inputs.val
-        run: echo not empty
-      - if: ! inputs.val == '2'
-        run: echo not inputs.val
-      - if: inputs.val != '2'
-        run: echo not inputs.val
-      - if: inputs.val == '2' || inputs.val == '3'
-        run: echo hello world
-        
+  caller:
+    name: 'Call other repo workflow via workflow_call'
+    uses: TE-ShungoHigashi/private_testrepo/.github/workflows/helloworld.yml@main
+    with:
+      name: "John"
