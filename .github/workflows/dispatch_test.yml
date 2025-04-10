@@ -8,3 +8,4 @@ jobs:
     uses: TE-ShungoHigashi/private_testrepo/.github/workflows/helloworld.yml@main
     with:
       name: "John"
+    secrets: inherit
