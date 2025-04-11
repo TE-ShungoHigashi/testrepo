@@ -1,4 +1,4 @@
 {
-    "name": "test devcon",
+    "name": "debian devcon",
     "image": "mcr.microsoft.com/devcontainers/base:debian"
 }

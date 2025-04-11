@@ -13,18 +13,43 @@ jobs:
       - name: host info
         run: cat /etc/os-release
 
-      - name: devcon
+      - name: debian devcon
         uses: devcontainers/ci@v0.3
         with:
+          configFile: ./.devcontainer/debian/devcontainer.json
           runCmd: |
             echo hello from devcontainer
             cat /etc/os-release
             touch testdayo
 
-      - name: devcon 2nd
+      - name: debian devcon 2nd
         uses: devcontainers/ci@v0.3
         with:
+          configFile: ./.devcontainer/debian/devcontainer.json
           runCmd: |
             echo 2nd hello from devcontainer
             ls -la
             pwd
+
+      - name: fedora devcon
+        uses: devcontainers/ci@v0.3
+        with:
+          configFile: ./.devcontainer/fedora/devcontainer.json
+          runCmd: |
+            echo hello from devcontainer
+            cat /etc/os-release
+            touch fedododo
+
+      - name: fedora 2nd
+        uses: devcontainers/ci@v0.3
+        with:
+          configFile: ./.devcontainer/fedora/devcontainer.json
+          runCmd: |
+            echo 2nd hello from devcontainer
+            ls -la
+            pwd
+
+  # devcon_manual:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - 
