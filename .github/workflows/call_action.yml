@@ -12,6 +12,15 @@ jobs:
   call_action:
     runs-on: ubuntu-latest
     steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api \
+          --method POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /repos/TE-ShungoHigashi/testrepo/statuses/36cfdc04690553b3ed580a27ade896a61b439f63 \
+          -f "state=failure" -f "target_url=https://example.com/build/status" -f "description=The build succeeded!" -f "context=hello_world"
       - run: |
           test=$(echo '${{runner.name}}')
           echo $test
