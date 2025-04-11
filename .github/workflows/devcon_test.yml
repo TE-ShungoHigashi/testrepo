@@ -19,6 +19,7 @@ jobs:
           runCmd: |
             echo hello from devcontainer
             cat /etc/os-release
+            touch testdayo
 
       - name: devcon 2nd
         uses: devcontainers/ci@v0.3
