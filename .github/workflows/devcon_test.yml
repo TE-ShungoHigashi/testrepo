@@ -1,0 +1,29 @@
+name: devcon test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  devcon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: host info
+        run: cat /etc/os-release
+
+      - name: devcon
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            echo hello from devcontainer
+            cat /etc/os-release
+
+      - name: devcon 2nd
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            echo 2nd hello from devcontainer
+            ls -la
+            pwd
