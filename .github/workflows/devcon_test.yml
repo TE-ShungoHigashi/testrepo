@@ -5,6 +5,7 @@ on:
 
 jobs:
   devcon:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,16 +21,22 @@ jobs:
           runCmd: |
             echo hello from devcontainer
             cat /etc/os-release
-            touch testdayo
+            touch debian
+            sudo apt update && sudo apt install -y --no-install-recommends screenfetch
+            screenfetch
 
       - name: debian devcon 2nd
         uses: devcontainers/ci@v0.3
         with:
           configFile: ./.devcontainer/debian/devcontainer.json
+          env:
+            TEST=testenvdebian
           runCmd: |
+            echo ENVTEST: $TEST
             echo 2nd hello from devcontainer
             ls -la
             pwd
+            screenfetch
 
       - name: fedora devcon
         uses: devcontainers/ci@v0.3
@@ -38,18 +45,64 @@ jobs:
           runCmd: |
             echo hello from devcontainer
             cat /etc/os-release
-            touch fedododo
+            touch fedora
 
-      - name: fedora 2nd
+      - name: debian devcon 3nd
         uses: devcontainers/ci@v0.3
         with:
-          configFile: ./.devcontainer/fedora/devcontainer.json
+          configFile: ./.devcontainer/debian/devcontainer.json
+          env:
+            TEST=testenvdebian333
           runCmd: |
+            echo ENVTEST: $TEST
             echo 2nd hello from devcontainer
             ls -la
             pwd
+            screenfetch
 
-  # devcon_manual:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - 
+  devcon_manual:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install devcontainer-cli
+        run: |
+          npm install -g @devcontainers/cli
+          devcontainer --version
+
+      - name: debian devcon
+        run: |
+          devcontainer exec --config .devcontainer/debain/devcontainer.json echo hello from devcontainer && cat /etc/os-release
+
+      # - name: debian devcon 2nd
+      #   uses: devcontainers/ci@v0.3
+      #   with:
+      #     configFile: ./.devcontainer/debian/devcontainer.json
+      #     env:
+      #       TEST=testenvdebian
+      #     runCmd: |
+      #       echo ENVTEST: $TEST
+      #       echo 2nd hello from devcontainer
+      #       ls -la
+      #       pwd
+      #       screenfetch
+
+      # - name: fedora devcon
+      #   uses: devcontainers/ci@v0.3
+      #   with:
+      #     configFile: ./.devcontainer/fedora/devcontainer.json
+      #     runCmd: |
+      #       echo hello from devcontainer
+      #       cat /etc/os-release
+      #       touch fedora
+
+      # - name: debian devcon 3nd
+      #   uses: devcontainers/ci@v0.3
+      #   with:
+      #     configFile: ./.devcontainer/debian/devcontainer.json
+      #     env:
+      #       TEST=testenvdebian333
+      #     runCmd: |
+      #       echo ENVTEST: $TEST
+      #       echo 2nd hello from devcontainer
+      #       ls -la
+      #       pwd
+      #       screenfetch
