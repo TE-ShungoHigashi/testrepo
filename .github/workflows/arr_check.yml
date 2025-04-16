@@ -1,0 +1,34 @@
+name: array test (simple)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  array_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: create array
+        id: create_array
+        run: |
+          array=(arg1 --opt1 val1 --opt2 "v a l 2" '--opt3=v a l 3' --opt4='val "4' --opt5="val \" ' 5" --opt6='val " '\'' 6')
+          echo "arr_out_atm=${array[@]}" | tee -a $GITHUB_OUTPUT
+          echo "arr_out_ast=${array[*]}" | tee -a $GITHUB_OUTPUT
+          echo "arr_out_atm_q=${array[@]@Q}" | tee -a $GITHUB_OUTPUT
+          echo "arr_out_ast_q=${array[*]@Q}" | tee -a $GITHUB_OUTPUT
+
+      - name: check array atmark
+        run: |
+          printf "%s\n" ${{ steps.create_array.outputs.arr_out_atm }}
+
+      - name: check array asterisk
+        run: |
+          printf "%s\n" ${{ steps.create_array.outputs.arr_out_ast }}
+
+      - name: check array atmark with Q
+        run: |
+          printf "%s\n" ${{ steps.create_array.outputs.arr_out_atm_q }}
+
+      - name: check array asterisk with Q
+        run: |
+          printf "%s\n" ${{ steps.create_array.outputs.arr_out_ast_q }}
