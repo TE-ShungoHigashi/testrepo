@@ -22,28 +22,34 @@ jobs:
 
       - name: check array atmark
         run: |
+          set -x
           printf "%s\n" ${{ steps.create_array.outputs.arr_out_atm }}
 
       - name: check array asterisk
         run: |
+          set -x
           printf "%s\n" ${{ steps.create_array.outputs.arr_out_ast }}
 
       - name: check array atmark with Q
         run: |
+          set -x
           printf "%s\n" ${{ steps.create_array.outputs.arr_out_atm_q }}
 
       - name: check array asterisk with Q
         run: |
+          set -x
           printf "%s\n" ${{ steps.create_array.outputs.arr_out_ast_q }}
           
       - name: test 1
         run: |
+          set -x
           ls ${{ steps.create_array.outputs.cmd_arr}}
 
       - name: test 2
         env:
           cmd_arr: ${{ steps.create_array.outputs.cmd_arr }}
         run: |
+          set -x
           echo NG 文字のクオートが残ってしまってる
           ls $cmd_arr || true 
           echo ------------------------------
