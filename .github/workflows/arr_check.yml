@@ -46,5 +46,5 @@ jobs:
         run: |
           ls $cmd_arr
           echo ------------------------------
-          declare -a new_cmd_arr="($cmd_arr)"
+          declare -a "new_cmd_arr=($cmd_arr)"
           ls "${new_cmd_arr[@]}"
