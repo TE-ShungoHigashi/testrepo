@@ -44,7 +44,8 @@ jobs:
         env:
           cmd_arr: ${{ steps.create_array.outputs.cmd_arr }}
         run: |
-          ls $cmd_arr
+          echo NG 文字のクオートが残ってしまってる
+          ls $cmd_arr || true 
           echo ------------------------------
-          declare -a "new_cmd_arr=($cmd_arr)"
+          declare -a new_cmd_arr="($cmd_arr)"
           ls "${new_cmd_arr[@]}"
