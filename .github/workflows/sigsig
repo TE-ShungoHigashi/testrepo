@@ -1,0 +1,16 @@
+name: signal check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sigsig:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: super sleep
+        run: |
+          trap "echo SIGINT trapped" SIGINT
+          trap "echo SIGTERM trapped" SIGTERM
+          trap -p
+          sleep 100
