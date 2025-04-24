@@ -16,6 +16,9 @@ jobs:
           echo "arr_out_ast=${array[*]}" | tee -a $GITHUB_OUTPUT
           echo "arr_out_atm_q=${array[@]@Q}" | tee -a $GITHUB_OUTPUT
           echo "arr_out_ast_q=${array[*]@Q}" | tee -a $GITHUB_OUTPUT
+          mkdir "test dir"
+          cmd_arr=(-al -R "test dir")
+          echo "cmd_arr=${cmd_arr[*]@Q}" | tee -a $GITHUB_OUTPUT
 
       - name: check array atmark
         run: |
@@ -32,3 +35,16 @@ jobs:
       - name: check array asterisk with Q
         run: |
           printf "%s\n" ${{ steps.create_array.outputs.arr_out_ast_q }}
+          
+      - name: test 1
+        run: |
+          ls ${{ steps.create_array.outputs.cmd_arr}}
+
+      - name: test 2
+        env:
+          cmd_arr: ${{ steps.create_array.outputs.cmd_arr }}
+        run: |
+          ls $cmd_arr
+          echo ------------------------------
+          declare -a new_cmd_arr="(cmd_arr)"
+          ls "${new_cmd_arr[@]}"
