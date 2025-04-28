@@ -7,7 +7,7 @@ on:
       checkmark:
         description: Checkbox
         type: boolean
-        default: true
+        default: false
       boolstr:
         description: boolean string
         type: string
@@ -21,17 +21,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      CHECK: ${{ inputs.checkmark || true }}
-      CHECK2: ${{ inputs.checkmark }}
-      CHECK3: ${{ inputs.boolstr || true }}
-      CHECK4: ${{ inputs.boolstr }}
-      CHECK5: ${{ inputs.emptystr || true }}
-      CHECK6: ${{ inputs.emptystr }}
-      CHECK7: ${{ inputs.checkmark == 0 }}
-      CHECK8: ${{ inputs.checkmark == null }}
-      CHECK9: ${{ inputs.checkmark == '' }}
-      CHECK10: ${{ 'false' == false }}
-      CHECK11: ${{ inputs == fromJson(null) }} 
+      check1: ${{ contains(inputs, 'checkmark') && inputs.checkmark || true }} 
+      check2: ${{ contains(inputs, 'boolstr') && inputs.boolstr || true }}
+      check3: ${{ contains(inputs, 'emptystr') && inputs.emptystr || true }} 
     steps:
       - name: echo CHECKMARK
         env:
