@@ -19,8 +19,9 @@ jobs:
           INPUTS: ${{ toJson(inputs) }}
           ENV: ${{ toJson(env) }}
         run: |
-          echo ${{ env.CHECKMARK }}
-          echo ----------------------------
+          echo $CHECKMARK
+          echo $CHECKMARK2
+          echo -----------------------------
           echo $INPUTS
           echo -----------------------------
           echo $ENV
