@@ -7,22 +7,30 @@ on:
       checkmark:
         description: Checkbox
         type: boolean
+      boolstr:
+        description: boolean string
+        type: string
+        default: false
 
 jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      CHECKMARK: ${{ inputs.checkmark || true }}
-      CHECKMARK2: ${{ inputs.checkmark }}
+      CHECK: ${{ inputs.checkmark || true }}
+      CHECK2: ${{ inputs.checkmark }}
+      CHECK3: ${{ inputs.boolstr || true }}
+      CHECK4: ${{ inputs.boolstr }}
     steps:
       - name: echo CHECKMARK
         env:
           INPUTS: ${{ toJson(inputs) }}
           ENV: ${{ toJson(env) }}
         run: |
-          # We can also expand envs like this: echo $CHECKMARK
-          echo ${{ env.CHECKMARK }}
-          echo ${{ env.CHECKMARK2 }}
+          # We can also expand envs like this: echo $CHECK
+          echo check1: ${{ env.CHECK }}
+          echo check2: ${{ env.CHECK2 }}
+          echo check3: ${{ env.CHECK3 }}
+          echo check4: ${{ env.CHECK4 }}
           echo -----------inputs context--------------
           echo $INPUTS
           echo --------------env context--------------
