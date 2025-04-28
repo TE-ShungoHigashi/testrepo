@@ -27,19 +27,14 @@ jobs:
       CHECK4: ${{ inputs.boolstr }}
       CHECK5: ${{ inputs.emptystr || true }}
       CHECK6: ${{ inputs.emptystr }}
+      CHECK7: ${{ inputs.checkmark != '' && inputs.checkmark || true }}
+      CHECK8: ${{ inputs.checkmark != null && inputs.checkmark || true }}
     steps:
       - name: echo CHECKMARK
         env:
           INPUTS: ${{ toJson(inputs) }}
           ENV: ${{ toJson(env) }}
         run: |
-          # We can also expand envs like this: echo $CHECK
-          echo check1: ${{ env.CHECK }}
-          echo check2: ${{ env.CHECK2 }}
-          echo check3: ${{ env.CHECK3 }}
-          echo check4: ${{ env.CHECK4 }}
-          echo check5: ${{ env.CHECK5 }}
-          echo check6: ${{ env.CHECK6 }}
           echo -----------inputs context--------------
           echo $INPUTS
           echo --------------env context--------------
