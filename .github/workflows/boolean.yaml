@@ -27,8 +27,9 @@ jobs:
       CHECK4: ${{ inputs.boolstr }}
       CHECK5: ${{ inputs.emptystr || true }}
       CHECK6: ${{ inputs.emptystr }}
-      CHECK7: ${{ inputs.checkmark != '' && inputs.checkmark || true }}
-      CHECK8: ${{ inputs.checkmark != null && inputs.checkmark || true }}
+      CHECK7: ${{ inputs.checkmark == 0 }}
+      CHECK8: ${{ inputs.checkmark == null }}
+      CHECK9: ${{ inputs.checkmark == '' }}
     steps:
       - name: echo CHECKMARK
         env:
