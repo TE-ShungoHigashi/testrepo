@@ -1,0 +1,23 @@
+name: boolean check
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      checkmark:
+        description: Checkbox
+        type: boolean
+
+test:
+  runs-on: ubuntu-latest
+  env:
+    CHECKMARK: ${{ inputs.checkmark | true }}
+  steps:
+    - name: echo CHECKMARK
+      run: |
+        echo ${{ env.CHECKMARK }}
+        echo ----------------------------
+        echo ${{ inputs }}
+        echo ------------------------------
+        echo ${{ env }}
+      
