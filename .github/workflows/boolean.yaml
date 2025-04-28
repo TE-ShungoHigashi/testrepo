@@ -21,9 +21,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      check1: ${{ contains(inputs, 'checkmark') && inputs.checkmark || true }} 
-      check2: ${{ contains(inputs, 'boolstr') && inputs.boolstr || true }}
-      check3: ${{ contains(inputs, 'emptystr') && inputs.emptystr || true }} 
+      check1: ${{ (github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_call' ) && inputs.checkmark || true }}
+      check2: ${{ (github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_call' ) && inputs.boolstr || true }}
+      check3: ${{ (github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_call' ) && inputs.emptystr || true }}
     steps:
       - name: echo CHECKMARK
         env:
