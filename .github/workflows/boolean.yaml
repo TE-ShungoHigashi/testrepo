@@ -15,10 +15,13 @@ jobs:
       CHECKMARK: ${{ inputs.checkmark || true }}
     steps:
       - name: echo CHECKMARK
+        env:
+          INPUTS: ${{ toJson(inputs) }}
+          ENV: ${{ toJson(env) }}
         run: |
           echo ${{ env.CHECKMARK }}
           echo ----------------------------
-          echo ${{ inputs }}
-          echo ------------------------------
-          echo ${{ env }}
+          echo $INPUTS
+          echo -----------------------------
+          echo $ENV
       
