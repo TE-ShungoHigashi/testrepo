@@ -11,6 +11,10 @@ on:
         description: boolean string
         type: string
         default: false
+      emptystr:
+        description: empty string
+        type: string
+        default: ''
 
 jobs:
   test:
@@ -20,6 +24,8 @@ jobs:
       CHECK2: ${{ inputs.checkmark }}
       CHECK3: ${{ inputs.boolstr || true }}
       CHECK4: ${{ inputs.boolstr }}
+      CHECK5: ${{ inputs.emptystr || true }}
+      CHECK6: ${{ inputs.emptystr }}
     steps:
       - name: echo CHECKMARK
         env:
