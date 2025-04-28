@@ -12,7 +12,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      CHECKMARK: ${{ inputs.checkmark | true }}
+      CHECKMARK: ${{ inputs.checkmark || true }}
     steps:
       - name: echo CHECKMARK
         run: |
