@@ -37,6 +37,8 @@ jobs:
           echo check2: ${{ env.CHECK2 }}
           echo check3: ${{ env.CHECK3 }}
           echo check4: ${{ env.CHECK4 }}
+          echo check5: ${{ env.CHECK5 }}
+          echo check6: ${{ env.CHECK6 }}
           echo -----------inputs context--------------
           echo $INPUTS
           echo --------------env context--------------
