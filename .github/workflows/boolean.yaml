@@ -13,16 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CHECKMARK: ${{ inputs.checkmark || true }}
+      CHECKMARK2: ${{ inputs.checkmark }}
     steps:
       - name: echo CHECKMARK
         env:
           INPUTS: ${{ toJson(inputs) }}
           ENV: ${{ toJson(env) }}
         run: |
-          echo $CHECKMARK
-          echo $CHECKMARK2
-          echo -----------------------------
+          # We can also expand envs like this: echo $CHECKMARK
+          echo ${{ env.CHECKMARK }}
+          echo ${{ env.CHECKMARK2 }}
+          echo -----------inputs context--------------
           echo $INPUTS
-          echo -----------------------------
+          echo --------------env context--------------
           echo $ENV
       
