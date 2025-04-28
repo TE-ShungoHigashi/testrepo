@@ -30,6 +30,7 @@ jobs:
       CHECK7: ${{ inputs.checkmark == 0 }}
       CHECK8: ${{ inputs.checkmark == null }}
       CHECK9: ${{ inputs.checkmark == '' }}
+      CHECK10: ${{ 'false' == false }}
     steps:
       - name: echo CHECKMARK
         env:
