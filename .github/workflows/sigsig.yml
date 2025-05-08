@@ -14,3 +14,4 @@ jobs:
           trap "echo SIGTERM trapped" SIGTERM
           trap -p
           sleep 100
+ 
