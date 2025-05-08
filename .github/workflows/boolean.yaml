@@ -2,36 +2,20 @@ name: boolean check
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
-    inputs:
-      checkmark:
-        description: Checkbox
-        type: boolean
-        default: false
-      boolstr:
-        description: boolean string
-        type: string
-        default: false
-      emptystr:
-        description: empty string
-        type: string
-        default: ''
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      check1: ${{ (github.event_name != 'workflow_dispatch' && github.event_name != 'workflow_call' ) && true || inputs.checkmark }}
-      check2: ${{ (github.event_name != 'workflow_dispatch' && github.event_name != 'workflow_call' ) && true || inputs.boolstr }}
-      check3: ${{ (github.event_name != 'workflow_dispatch' && github.event_name != 'workflow_call' ) && true || inputs.emptystr }}
     steps:
-      - name: echo CHECKMARK
-        env:
-          INPUTS: ${{ toJson(inputs) }}
-          ENV: ${{ toJson(env) }}
+      - name: echo echo
         run: |
-          echo -----------inputs context--------------
-          echo $INPUTS
-          echo --------------env context--------------
-          echo $ENV
+          echo github.event_name: ${{ github.event_name }}
+          echo github.ref: ${{ github.ref }}
+          echo github.ref_name: ${{ github.ref_name }}
+          echo github.sha ${{ github.sha }}
+          echo gihub.head_ref: ${{ github.head_ref }}
+          echo gihub.base_ref: ${{ github.base_ref }}
+
       
