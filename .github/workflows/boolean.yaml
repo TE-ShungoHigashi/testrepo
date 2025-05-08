@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: echo echo
+      - name: echo echo 
         run: |
           echo github.event_name: ${{ github.event_name }}
           echo github.ref: ${{ github.ref }}
