@@ -14,4 +14,5 @@ aalsdkfjalsdkfjaslkdfj
 ### detalis block
 
 echo hoge
+
 </details>
