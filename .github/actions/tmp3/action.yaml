@@ -10,4 +10,12 @@ runs:
   steps:
     - name: echo
       shell: bash
-      run: echo "${{ inputs.input_str }}"
+      run: |
+        echo "${{ inputs.input_str }}"
+        echo --------------
+        echo "${{ inputs }}"
+    - name: echo 2
+      shell: bash
+      run: |
+        IFS=$'\n' read -r -d '' -a array <<< "${{ inputs.input_str }}"
+        declare -p array
