@@ -1,0 +1,13 @@
+name: tmp1
+
+inputs:
+  input_str:
+    description: str
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: echo
+      shell: bash
+      run: echo "${{ inputs.input_str }}"
