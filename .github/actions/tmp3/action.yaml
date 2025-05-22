@@ -18,7 +18,9 @@ runs:
         echo "$inputs"
     - name: echo 2
       shell: bash
+      env:
+        INPUT_STR: ${{ inputs.input_str }}
       run: |
-        IFS=$'\n' read -r -d '' -a array < <(printf '%s\0' "${{ inputs.input_str }}")
+        IFS=$'\n' read -r -d '' -a array <<< "${INPUT_STR}"
         echo --------------
         declare -p array
