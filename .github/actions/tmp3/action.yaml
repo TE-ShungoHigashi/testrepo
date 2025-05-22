@@ -19,6 +19,6 @@ runs:
     - name: echo 2
       shell: bash
       run: |
-        mapfile -t arr < <(sed '/^$/d' "${{ inputs.input_str }}")
+        mapfile -t arr < <(echo "${{ inputs.input_str }}" | sed '/^$/d')
         echo ---------------------
         declare -p arr
