@@ -17,5 +17,5 @@ runs:
     - name: echo 2
       shell: bash
       run: |
-        IFS=$'\n' read -r -d '' -a array < <(printf '%s\0' "${{ inputs.input_str }}")
+        IFS=$'\n' read -r -d '' -a array < <(echo "${{ inputs.input_str }}")
         declare -p array
