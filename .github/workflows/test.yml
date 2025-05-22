@@ -1,0 +1,16 @@
+name: list check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  array_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: list
+        uses: ./.github/actions/tmp3
+        with:
+          input_str: |
+            piyo1
+            piyo2
+            piyo3
