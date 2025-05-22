@@ -10,10 +10,12 @@ runs:
   steps:
     - name: echo
       shell: bash
+      env:
+        inputs: ${{ toJSON(inputs) }}
       run: |
         echo "${{ inputs.input_str }}"
         echo --------------
-        echo "${{ inputs }}"
+        echo "$inputs"
     - name: echo 2
       shell: bash
       run: |
