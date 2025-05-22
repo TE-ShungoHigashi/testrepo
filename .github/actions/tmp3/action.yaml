@@ -21,6 +21,8 @@ runs:
       env:
         INPUT_STR: ${{ inputs.input_str }}
       run: |
+        echo "$INPUT_STR"
+        echo ---------------------------
         IFS=$'\n' read -r -d '' -a array <<< "${INPUT_STR}"
         echo --------------
         declare -p array
