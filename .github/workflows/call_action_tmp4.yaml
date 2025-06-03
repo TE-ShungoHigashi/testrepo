@@ -12,7 +12,7 @@ jobs:
         run: echo "output=parent" | tee -a $GITHUB_OUTPUT
       - run: echo "${{ steps.parent.outputs.output }}"
       - uses: ./.github/actions/tmp4
-        with:
-          input_str: ""
+        #with:
+        #  input_str: ""
       - run: |
           echo "${{ steps.child.outputs.output }}"
