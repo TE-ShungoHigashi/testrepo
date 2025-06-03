@@ -1,0 +1,13 @@
+name: call composite action
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call_action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: .github/actions/tmp4
+      - run: |
+          echo "${{ steps.test_id.outputs.XX }}"
