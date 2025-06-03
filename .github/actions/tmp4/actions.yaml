@@ -1,0 +1,16 @@
+name: tmp4
+
+inputs:
+  input_str:
+    description: str
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: echo
+      shell: bash
+      id: test_id
+      run: |
+        echo this is an action
+        echo "output1=hogehoge" | tee -a $GITHUB_OUTPUT
