@@ -16,3 +16,5 @@ jobs:
         #  input_str: ""
       - run: |
           echo "${{ steps.child.outputs.output }}"
+      - working-directory: ""
+        run: pwd
