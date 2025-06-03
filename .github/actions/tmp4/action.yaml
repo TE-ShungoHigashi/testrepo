@@ -10,7 +10,11 @@ runs:
   steps:
     - name: echo
       shell: bash
-      id: test_id
+      run: |
+        echo "${{ steps.parent.outputs.output }}"
+    - name: echo
+      shell: bash
+      id: child
       run: |
         echo this is an action
-        echo "output1=hogehoge" | tee -a $GITHUB_OUTPUT
+        echo "output=hogehoge" | tee -a $GITHUB_OUTPUT
