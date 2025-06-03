@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: .github/actions/tmp4
+      - uses: ./.github/actions/tmp4
       - run: |
-          echo "${{ steps.test_id.outputs.XX }}"
+          echo "${{ steps.test_id.outputs.output1 }}"
