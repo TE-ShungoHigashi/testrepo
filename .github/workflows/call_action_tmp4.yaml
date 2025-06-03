@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - id: parent
+        run: echo "output=parent" | tee -a $GITHUB_OUTPUT
       - uses: ./.github/actions/tmp4
       - run: |
-          echo "${{ steps.test_id.outputs.output1 }}"
+          echo "${{ steps.child.outputs.output }}"
