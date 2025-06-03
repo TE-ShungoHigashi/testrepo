@@ -1,4 +1,4 @@
-name: call composite action
+name: call composite action4
 
 on:
   workflow_dispatch:
