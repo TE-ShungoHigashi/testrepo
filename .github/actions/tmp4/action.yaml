@@ -3,7 +3,7 @@ name: tmp4
 inputs:
   input_str:
     description: str
-    required: false
+    required: true
 
 runs:
   using: 'composite'
