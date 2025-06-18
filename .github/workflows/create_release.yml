@@ -1,9 +1,8 @@
-name: array test (simple)
-
+name: Create release
 on:
   push:
     tags:
-
+      - '*'
 
 jobs:
   create_release_page:
