@@ -1,0 +1,19 @@
+name: array test (simple)
+
+on:
+  push:
+    tags:
+
+
+jobs:
+  create_release_page:
+    name: Create release page
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          draft: true
