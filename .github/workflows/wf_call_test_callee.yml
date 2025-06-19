@@ -1,0 +1,17 @@
+name: Workflow Call Test Callee
+on:
+  workflow_call:
+    inputs:
+      call_val:
+        description: 'Value to pass to the called workflow'
+        required: true
+        type: string
+        default: 'default_value'
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print the value passed from the caller
+        run: |
+          echo "Value passed from the caller: ${{ inputs.call_val }}"
