@@ -2,8 +2,7 @@ name: release test
 
 on:
   release:
-    types:
-      - published
+    types: published
 
 jobs:
   job1:
@@ -11,6 +10,8 @@ jobs:
     steps:
       - run: |
           echo "github.event.release.tag_name=${{ github.event.release.tag_name }}"
-          echo "github.repository=${[ github.repository }}"
+          echo "github.repository=${{ github.repository }}"
           echo "github.event.repository=${{ github.event.repository }}"
+          echo "github.event.repository=${{ toJson(github.event.repository) }}"
+          echo "github.event.repository=${{ github.event.repository.name }}"
           echo "github.event.release.repository=${{ github.event.release.repository }}"
