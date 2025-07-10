@@ -10,15 +10,15 @@ jobs:
       - id: output-line
         run: |
           #echo "test1=aaa\nbbbb\nccc" | tee -a $GITHUB_OUTPUT
-          echo -e "test2=aaa\nbbbb\nccc" | tee -a $GITHUB_OUTPUT
-          #( echo "test3<<EOF"
-          #  echo "aaa
-          #  bbb
-          #  ccc"
-          #  cat /etc/os-release
-          #  echo "EOF") | tee -a $GITHUB_OUTPUT
+          #echo -e "test2=aaa\nbbbb\nccc" | tee -a $GITHUB_OUTPUT
+          ( echo "test3<<EOF"
+            echo "aaa
+            bbb
+            ccc"
+            cat /etc/os-release
+            echo "EOF") | tee -a $GITHUB_OUTPUT
 
       - run: |
           #echo "test1: ${{ steps.output-line.outputs.test1 }}"
-          echo "test2: ${{ steps.output-line.outputs.test2 }}"
-          #echo "test3: ${{ steps.output-line.outputs.test3 }}"
+          #echo "test2: ${{ steps.output-line.outputs.test2 }}"
+          echo "test3: ${{ steps.output-line.outputs.test3 }}"
