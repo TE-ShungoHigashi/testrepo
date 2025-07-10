@@ -16,7 +16,6 @@ jobs:
             echo "aaa
             bbb
             ccc"
-            cat /etc/os-release
             echo "EOF") | tee -a $GITHUB_OUTPUT
 
       - run: |
