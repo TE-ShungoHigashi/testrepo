@@ -21,4 +21,4 @@ jobs:
       - run: |
           #echo "test1: ${{ steps.output-line.outputs.test1 }}"
           #echo "test2: ${{ steps.output-line.outputs.test2 }}"
-          echo "test3: ${{ steps.output-line.outputs.test3 }}"
+          echo 'test3: ${{ steps.output-line.outputs.test3 }}'
