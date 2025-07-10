@@ -22,3 +22,7 @@ jobs:
           #echo "test1: ${{ steps.output-line.outputs.test1 }}"
           #echo "test2: ${{ steps.output-line.outputs.test2 }}"
           echo 'test3: ${{ steps.output-line.outputs.test3 }}'
+      - uses: ./.github/actions/tmp3
+        with:
+          input_str: ${{ steps.output-line.outputs.test3 }}
+      
