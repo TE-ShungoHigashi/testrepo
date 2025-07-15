@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - env:
+          var1:  senscord-edc-t4.*\.tar\.gz
+        run: echo "$var1"
       - id: output-line
         run: |
           #echo "test1=aaa\nbbbb\nccc" | tee -a $GITHUB_OUTPUT
