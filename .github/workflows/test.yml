@@ -14,6 +14,7 @@ jobs:
           name: RPi_EDC
           path: ./artifact
           repository: aitrios/aitrios-edge-device-core
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: 17210745065
       - name: output
         run: |
