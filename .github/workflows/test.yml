@@ -19,7 +19,7 @@ jobs:
       - name: output
         run: |
           echo '```python' >> "${GITHUB_STEP_SUMMARY}"
-          ls -la . >> "${GITHUB_STEP_SUMMARY}"
+          ls -lRa . >> "${GITHUB_STEP_SUMMARY}"
           echo '```' >> "${GITHUB_STEP_SUMMARY}"
           echo "aaaa
           bbb
