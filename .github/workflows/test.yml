@@ -8,6 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: RPi_EDC
+          path: ./artifact
+          repository: aitrios/aitrios-edge-device-core
+          run-id: 17210745065
       - name: output
         run: |
           echo '```python' >> "${GITHUB_STEP_SUMMARY}"
