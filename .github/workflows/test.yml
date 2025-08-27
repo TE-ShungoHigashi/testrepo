@@ -16,6 +16,12 @@ jobs:
           echo "aaaa
           bbb
           ccc" >> "${GITHUB_STEP_SUMMARY}"
+          echo <<'EOC' >> "${GITHUB_STEP_SUMMARY}"
+          This is here document
+          ```bash
+          echo hogehoge
+          ```
+          EOC
       - name: list
         uses: ./.github/actions/tmp3
         with:
