@@ -8,6 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: output
+        run: |
+          echo '```python' >> "${GITHUB_STEP_SUMMARY}"
+          ls -la . >> "${GITHUB_STEP_SUMMARY}"
+          echo '```' >> "${GITHUB_STEP_SUMMARY}"
+          echo "aaaa
+          bbb
+          ccc" >> "${GITHUB_STEP_SUMMARY}"
       - name: list
         uses: ./.github/actions/tmp3
         with:
