@@ -16,3 +16,10 @@ jobs:
           echo "::notice title=Notice Title::This is a notice message with a title"
           echo "::warning title=Warning Title::This is a warning message with a title"
           echo "::error title=Error Title::This is an error message with a title"
+      - name: grep
+        run: |
+          cat <<EOF | tee /dev/stdout | grep asdf
+          12345
+          asdf
+          zxcv
+          EOF
