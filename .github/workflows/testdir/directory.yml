@@ -1,0 +1,40 @@
+name: directory workflow check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: RPi_EDC
+          path: ./artifact
+          repository: aitrios/aitrios-edge-device-core
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 17210745065
+      - name: output
+        run: |
+          echo '```python' >> "${GITHUB_STEP_SUMMARY}"
+          ls -lRa . >> "${GITHUB_STEP_SUMMARY}"
+          echo '```' >> "${GITHUB_STEP_SUMMARY}"
+          echo "aaaa
+          bbb
+          ccc" >> "${GITHUB_STEP_SUMMARY}"
+          cat <<'EOC' >> "${GITHUB_STEP_SUMMARY}"
+          This is here document
+          ```bash
+          echo hogehoge
+          ```
+          EOC
+      - name: list
+        uses: ./.github/actions/tmp3
+        with:
+          input_str: |
+            piyo1
+            piyo2
+
+            piyo3
