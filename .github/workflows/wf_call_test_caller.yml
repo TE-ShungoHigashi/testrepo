@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       val:
-        description: 'Value to pass to the called workflow'
+        description: 'Value to pass to the called workflow (e.g. `dummy hello`)'
         required: true
         type: string
         default: 'default_value'
