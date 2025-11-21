@@ -20,7 +20,7 @@ jobs:
         run: |
           echo "inputs.value1 = ${{ inputs.value1 }}"
           echo "inputs.value2 = ${{ inputs.value2 }}"
-          echo "inputs.value3 (undefined) = ${{ inputs.value2 }}"
+          echo "inputs.value3 (undefined) = ${{ inputs.value3 }}"
           echo "inputs.value1 && 'non-empty' || 'empty' = ${{ inputs.value1 && 'non-empty' || 'empty' }}"
           echo "inputs.value2 && 'non-empty' || 'empty' = ${{ inputs.value2 && 'non-empty' || 'empty' }}"
           echo "inputs.value3 && 'non-empty' || 'empty' = ${{ inputs.value3 && 'non-empty' || 'empty' }}"
