@@ -1,0 +1,35 @@
+name: Input empty check
+on:
+  workflow_call:
+    inputs:
+      value1:
+        description: 'inputs.value1'
+        required: false
+        type: string
+        default: hello
+      value2:
+        description: 'inputs.value2'
+        required: false
+        type: string
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print the value
+        run: |
+          echo "inputs.value1 = ${{ inputs.value1 }}"
+          echo "inputs.value2 = ${{ inputs.value2 }}"
+          echo "inputs.value3 (undefined) = ${{ inputs.value2 }}"
+          echo "inputs.value1 && 'non-empty' || 'empty' = ${{ inputs.value1 && 'non-empty' || 'empty' }}"
+          echo "inputs.value2 && 'non-empty' || 'empty' = ${{ inputs.value2 && 'non-empty' || 'empty' }}"
+          echo "inputs.value3 && 'non-empty' || 'empty' = ${{ inputs.value3 && 'non-empty' || 'empty' }}"
+          echo "inputs.value1 && 'non-empty' = ${{ inputs.value1 && 'non-empty' }}"
+          echo "inputs.value2 && 'non-empty' = ${{ inputs.value2 && 'non-empty' }}"
+          echo "inputs.value3 && 'non-empty' = ${{ inputs.value3 && 'non-empty' }}"
+          echo "inputs.value1 || 'empty' = ${{ inputs.value1 || 'empty' }}"
+          echo "inputs.value2 || 'empty' = ${{ inputs.value2 || 'empty' }}"
+          echo "inputs.value3 || 'empty' = ${{ inputs.value3 || 'empty' }}"
+          echo "inputs.value1 != '' = ${{ inputs.value1 != '' }}"
+          echo "inputs.value2 != '' = ${{ inputs.value2 != '' }}"
+          echo "inputs.value3 != '' = ${{ inputs.value3 != '' }}"
