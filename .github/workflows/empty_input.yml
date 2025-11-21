@@ -1,6 +1,6 @@
 name: Input empty check
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       value1:
         description: 'inputs.value1'
