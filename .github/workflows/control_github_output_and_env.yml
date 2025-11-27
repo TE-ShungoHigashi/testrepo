@@ -1,0 +1,22 @@
+name: Control GITHUB_OUTPUT and GITHUB_ENV
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: First step
+        run: |
+          echo "GITHUB_OUTPUT: $GITHUB_OUTPUT"
+          echo "GITHUB_ENV: $GITHUB_ENV"
+          echo "GITHUB_STEP_SUMMARY: $GITHUB_STEP_SUMMARY"
+          ls -la ${{ runner.temp }}/_runner_file_commands
+
+      - name: Second step
+        run: |
+          echo "GITHUB_OUTPUT: $GITHUB_OUTPUT"
+          echo "GITHUB_ENV: $GITHUB_ENV"
+          echo "GITHUB_STEP_SUMMARY: $GITHUB_STEP_SUMMARY"
+          ls -la ${{ runner.temp }}/_runner_file_commands
