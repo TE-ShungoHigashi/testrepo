@@ -1,6 +1,5 @@
 name: Control GITHUB_OUTPUT and GITHUB_ENV
 on:
-  push:
   workflow_dispatch:
 
 jobs:
