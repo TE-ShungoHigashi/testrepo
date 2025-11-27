@@ -1,6 +1,5 @@
 name: Input empty check
 on:
-  push:
   workflow_dispatch:
     inputs:
       value1:
