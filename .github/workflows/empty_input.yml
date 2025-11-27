@@ -34,14 +34,3 @@ jobs:
           echo "inputs.value1 != '' = ${{ inputs.value1 != '' }}"
           echo "inputs.value2 != '' = ${{ inputs.value2 != '' }}"
           echo "inputs.value3 != '' = ${{ inputs.value3 != '' }}"
-          echo "GITHUB_OUTPUT: $GITHUB_OUTPUT"
-          echo "GITHUB_ENV: $GITHUB_ENV"
-          echo "GITHUB_STEP_SUMMARY: $GITHUB_STEP_SUMMARY"
-          ls -la ${{ runner.temp }}/_runner_file_commands
-
-      - name: Check GITHUB_OUTPUT
-        run: |
-          echo "GITHUB_OUTPUT: $GITHUB_OUTPUT"
-          echo "GITHUB_ENV: $GITHUB_ENV"
-          echo "GITHUB_STEP_SUMMARY: $GITHUB_STEP_SUMMARY"
-          ls -la ${{ runner.temp }}/_runner_file_commands
