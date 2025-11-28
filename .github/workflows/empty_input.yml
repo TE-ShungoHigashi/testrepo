@@ -33,3 +33,16 @@ jobs:
           echo "inputs.value1 != '' = ${{ inputs.value1 != '' }}"
           echo "inputs.value2 != '' = ${{ inputs.value2 != '' }}"
           echo "inputs.value3 != '' = ${{ inputs.value3 != '' }}"
+      - name: test
+        id: test
+        run: |
+          dummy="this is dummy"
+          echo "test=aa bb cc $dummy"  | tee -a $GITHUB_OUTPUT
+          printf 'test2=aa bb cc %s' "$dummy" | tee -a $GITHUB_OUTPUT
+      - name: print
+        run: |
+          printf '%s' ${{ steps.test.outputs.test }}
+          echo -------------
+          printf '%s' ${{ steps.test.outputs.test2 }}
+
+      
