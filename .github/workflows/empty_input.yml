@@ -38,11 +38,11 @@ jobs:
         run: |
           dummy="this is dummy"
           echo "test=aa bb cc $dummy"  | tee -a $GITHUB_OUTPUT
-          printf 'test2=aa bb cc %s' "$dummy" | tee -a $GITHUB_OUTPUT
+          printf 'test2=aa bb cc "%s"' "$dummy" | tee -a $GITHUB_OUTPUT
       - name: print
         run: |
-          printf '%s' ${{ steps.test.outputs.test }}
+          printf '%s\n' ${{ steps.test.outputs.test }}
           echo -------------
-          printf '%s' ${{ steps.test.outputs.test2 }}
+          printf '%s\n' ${{ steps.test.outputs.test2 }}
 
       
