@@ -1,0 +1,40 @@
+name: Sample Download Artifact
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create sample artifacts
+        run: |
+          mkdir -p artifacts
+          echo "hello from upload workflow" > artifacts/hello.txt
+          echo "timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)" > artifacts/metadata.txt
+
+      - name: List artifacts
+        run: ls -lah artifacts
+
+      - name: Upload artifact (sample-artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-artifact
+          path: artifacts
+
+  download-and-unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (for convenience)
+        uses: actions/checkout@v4
+
+      - name: Download artifact (sample-artifact)
+        uses: actions/download-artifact@v4
+        with:
+          name: sample-artifact
+
+      - name: List downloaded artifacts
+        run: ls -lahR
