@@ -1,0 +1,19 @@
+name: Show and Update Env
+description: "Show and update env1 variable in composite action."
+runs:
+  using: "composite"
+  steps:
+    - name: Show env1 (before)
+      shell: bash
+      run: |
+        echo "env1 before in composite (shell style): $env1"
+        echo "env1 before in composite (gha style): ${{ env.env1 }}"
+    - name: Overwrite env1
+      shell: bash
+      run: |
+        echo "env1=from-composite-action" | tee -a "$GITHUB_ENV"
+    - name: Show env1 (after)
+      shell: bash
+      run: |
+        echo "env1 after in composite (shell style): $env1"
+        echo "env1 after in composite (gha style): ${{ env.env1 }}"
