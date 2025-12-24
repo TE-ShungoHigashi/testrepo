@@ -22,7 +22,9 @@ jobs:
           echo "env1 in step 2 (gha style): ${{ env.env1 }}"
       - name: Run composite action
         uses: ./.github/actions/show-and-update-env
-      - name: Show env1 after composite
+      - name: Show envs after composite
         run: |
           echo "env1 after composite (shell style): $env1"
           echo "env1 after composite (gha style): ${{ env.env1 }}"
+          echo "env2 after composite (shell style): $env2"
+          echo "env2 after composite (gha style): ${{ env.env2 }}"

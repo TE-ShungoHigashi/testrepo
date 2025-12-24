@@ -17,3 +17,8 @@ runs:
       run: |
         echo "env1 after in composite (shell style): $env1"
         echo "env1 after in composite (gha style): ${{ env.env1 }}"
+
+    - name: Add new env variable env2
+      shell: bash
+      run: |
+        echo "env2=new-value-from-composite" | tee -a "$GITHUB_ENV"
