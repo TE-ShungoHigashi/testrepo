@@ -1,6 +1,9 @@
 name: env-show-and-update
 on:
   workflow_dispatch:
+
+env:
+  env0: global-value
 jobs:
   env-job:
     runs-on: ubuntu-latest
@@ -11,13 +14,20 @@ jobs:
         uses: actions/checkout@v6
       - name: Show env1 (step 1)
         run: |
+          echo "env0 before (shell style): $env0"
+          echo "env0 before (gha style): ${{ env.env0 }}"
           echo "env1 before (shell style): $env1"
           echo "env1 before (gha style): ${{ env.env1 }}"
-          echo "env1=step1-updated" | tee -a "$GITHUB_ENV"
+          echo "env0=workflow-env-step1-updated" | tee -a "$GITHUB_ENV"
+          echo "env1=job-env-step1-updated" | tee -a "$GITHUB_ENV"
+          echo "env0 before (shell style): $env0"
+          echo "env0 before (gha style): ${{ env.env0 }}"
           echo "env1 after (shell style): $env1"
           echo "env1 after (gha style): ${{ env.env1 }}"
       - name: Show env1 (step 2)
         run: |
+          echo "env0 in step 2 (shell style): $env0"
+          echo "env0 in step 2 (gha style): ${{ env.env0 }}"
           echo "env1 in step 2 (shell style): $env1"
           echo "env1 in step 2 (gha style): ${{ env.env1 }}"
       - name: Run composite action
@@ -28,3 +38,16 @@ jobs:
           echo "env1 after composite (gha style): ${{ env.env1 }}"
           echo "env2 after composite (shell style): $env2"
           echo "env2 after composite (gha style): ${{ env.env2 }}"
+
+  another_job:
+    runs-on: ubuntu-latest
+    needs: env-job
+    steps:
+      - name: Show envs in another job
+        run: |
+          echo "env0 in another job (shell style): $env0"
+          echo "env0 in another job (gha style): ${{ env.env0 }}"
+          echo "env1 in another job (shell style): $env1"
+          echo "env1 in another job (gha style): ${{ env.env1 }}"
+          echo "env2 in another job (shell style): $env2"
+          echo "env2 in another job (gha style): ${{ env.env2 }}"

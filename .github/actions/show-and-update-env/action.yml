@@ -11,7 +11,7 @@ runs:
     - name: Overwrite env1
       shell: bash
       run: |
-        echo "env1=from-composite-action" | tee -a "$GITHUB_ENV"
+        echo "env1=job-env-updated-from-composite-action" | tee -a "$GITHUB_ENV"
     - name: Show env1 (after)
       shell: bash
       run: |
@@ -21,4 +21,4 @@ runs:
     - name: Add new env variable env2
       shell: bash
       run: |
-        echo "env2=new-value-from-composite" | tee -a "$GITHUB_ENV"
+        echo "env2=new-env-added-from-composite" | tee -a "$GITHUB_ENV"
