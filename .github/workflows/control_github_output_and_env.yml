@@ -1,11 +1,18 @@
 name: Control GITHUB_OUTPUT and GITHUB_ENV
 on:
   workflow_dispatch:
-
+    inputs:
+      dummy:
+        required: false
+        type: string
+        default: 'true'
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+      - name: dummy
+        run: |
+          echo "${{ 'false' && 'truthy' || 'falthy' }}"
       - name: First step
         id: first_step
         run: |
