@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: dummy
         run: |
-          echo "${{ 'false' && 'truthy' || 'falthy' }}"
+          echo "${{ inputs.dummy && 'truthy' || 'falthy' }}"
       - name: First step
         id: first_step
         run: |
