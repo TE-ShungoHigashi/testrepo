@@ -29,11 +29,13 @@ jobs:
       - working-directory: /home/runner
         run: pwd # && mkdir test && echo 'hogehoge' >> test/text.txt && ls -l test
       - uses: actions/checkout@v4
+        env:
+          dirname: env_field
         with:
           repository: espressif/esptool
-          path: /home/runner/test
-      - working-directory: /home/runner/test
-        run: pwd && ls -l .
+          path: /home/runner/${{ env.dirname }}
+      - working-directory: /home/runner/
+        run: pwd && ls -Rl .
       - name: step A
         run: sleep 20; exit ${{ inputs.exit }}
       - name: step B
