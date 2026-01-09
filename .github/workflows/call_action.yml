@@ -33,9 +33,8 @@ jobs:
           dirname: env_field
         with:
           repository: espressif/esptool
-          path: /home/runner/${{ env.dirname }}
-      - working-directory: /home/runner/
-        run: pwd && ls -Rl .
+          path: ${{ env.dirname }}
+      - run: pwd && ls -Rl .
       - name: step A
         run: sleep 20; exit ${{ inputs.exit }}
       - name: step B
