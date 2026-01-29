@@ -1,0 +1,12 @@
+name: 'Input Default Behavior Action'
+description: 'Demonstrate that default values are not used when an empty variable is passed'
+inputs:
+  test_input:
+    description: Test input to demonstrate default behavior
+    required: false
+    default: 'This is the default value'
+runs:
+  using: "composite"
+  steps:
+    - run: echo "The value of test_input is '${{ inputs.test_input }}'"
+      shell: bash
