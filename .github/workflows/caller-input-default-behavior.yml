@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  call-without-input:
-    uses: ./.github/workflows/reusable-input-default-behavior.yml
-    # No inputs provided, should use 'This is the default value'
+#   call-without-input:
+#     uses: ./.github/workflows/reusable-input-default-behavior.yml
+#     # No inputs provided, should use 'This is the default value'
 
   call-with-undefined-var:
     uses: ./.github/workflows/reusable-input-default-behavior.yml

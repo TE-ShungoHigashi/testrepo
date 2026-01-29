@@ -3,7 +3,7 @@ description: 'Demonstrate that default values are not used when an empty variabl
 inputs:
   test_input:
     description: Test input to demonstrate default behavior
-    required: false
+    required: true
     default: 'This is the default value'
 runs:
   using: "composite"

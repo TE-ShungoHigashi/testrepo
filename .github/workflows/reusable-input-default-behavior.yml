@@ -5,7 +5,7 @@ on:
       test_input:
         type: string
         default: 'This is the default value'
-        required: false
+        required: true
 
 jobs:
   show-input:
