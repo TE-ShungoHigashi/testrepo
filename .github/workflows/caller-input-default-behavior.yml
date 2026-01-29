@@ -1,0 +1,21 @@
+name: Caller Input Default Behavior Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-without-input:
+    uses: ./.github/workflows/reusable-input-default-behavior.yml
+    # No inputs provided, should use 'This is the default value'
+
+  call-with-undefined-var:
+    uses: ./.github/workflows/reusable-input-default-behavior.yml
+    with:
+      test_input: ${{ vars.UNDEFINED_VAR }}
+    # vars.UNDEFINED_VAR is not set, so test_input will be empty string, NOT the default value.
+
+  call-with-empty-string:
+    uses: ./.github/workflows/reusable-input-default-behavior.yml
+    with:
+      test_input: ""
+    # Explicit empty string, should be empty.

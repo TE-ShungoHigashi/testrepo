@@ -1,0 +1,16 @@
+name: Reusable Workflow Input Default Behavior
+on:
+  workflow_call:
+    inputs:
+      test_input:
+        type: string
+        default: 'This is the default value'
+        required: false
+
+jobs:
+  show-input:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show input value
+        run: echo "The value of test_input is '${{ inputs.test_input }}'"
+        shell: bash
