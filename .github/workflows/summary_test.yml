@@ -20,6 +20,8 @@ jobs:
       - name: step 2
         run: |
           echo "### Test Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "⚠️ Summary file not found." >> "$GITHUB_STEP_SUMMARY"
+          echo "::warning title=warn::NOT FOUND" >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
           cat README.md >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
