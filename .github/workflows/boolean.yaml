@@ -23,3 +23,10 @@ jobs:
           echo gihub.base_ref: ${{ github.base_ref }}
           echo github.event.pull_request.head.ref ${{  github.event.pull_request.head.ref }}
           echo github.event.pull_request.head.sha ${{ github.event.pull_request.head.sha }}
+      - name: Show context
+        run: |
+          echo github.run_id ${{ github.run_id }}
+          echo github.run_attempt ${{ github.run_attempt }}
+          echo github.run_number ${{ github.run_number }}
+          echo github.repository ${{ github.repository }}
+          echo job.check_run_id ${{ job.check_run_id }}
