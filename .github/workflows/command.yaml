@@ -10,9 +10,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: test
+        shell: bash
         run: |
-          source <(grep "dummy" Dockerfile)
-          echo hello $(grep dummy Dockerfile)
+          parsed="$(grep dummy Dockerfile | head -n 1)" && source <<<"$parsed"
       - name: try some message
         run: |
           echo "::debug::This is a debug message"
