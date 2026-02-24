@@ -9,7 +9,16 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: test
+      - name: test1
+        continue-on-error: true
+        shell: bash
+        run: |
+          parsed="$(grep dummy Dockerfile | wc)"
+      - name: test2
+        continue-on-error: true
+        run: |
+          parsed="$(grep dummy Dockerfile | wc)"
+      - name: test3
         shell: bash
         run: |
           parsed="$(grep dummy Dockerfile | head -n 1)" && source <<<"$parsed"
