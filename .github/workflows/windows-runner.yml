@@ -1,0 +1,20 @@
+name: Windows hello world
+
+on:
+  workflow_dispatch:
+
+jobs:
+  echo:
+    runs-on: windows-latest
+    steps:
+      - name: Hello World
+        shell: cmd
+        run: |
+          echo "Hello World with double quotes"
+          echo Hello World without quotes
+
+      - name: Docker cache prune
+        shell: cmd
+        run: |
+          echo Executing Docker builder prune
+          docker builder prune -f
