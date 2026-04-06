@@ -1,0 +1,32 @@
+name: Windows hello world
+
+on:
+  workflow_dispatch:
+
+jobs:
+  echo:
+    runs-on: windows-latest
+    steps:
+
+      - name: Hello World
+        shell: cmd
+        run: |
+          echo "Hello World with double quotes"
+          echo Hello World without double quotes
+
+      - name: Set image tags
+        shell: cmd
+        run: |
+          echo DOCKER_IMAGE_TAGS=dummy-image:v1.0.0,dummy-image:latest,dummy-image:staging >> %GITHUB_ENV%
+
+      - name: Clean temporary containers
+        if: always()
+        shell: cmd
+        run: |
+          echo [INFO] Cleaning up Docker images created during this build
+          set "TAGS=${{ env.DOCKER_IMAGE_TAGS }}"
+          for %%i in (%TAGS%) do (
+            if not "%%i"=="" docker rmi -f "%%i" || echo [WARN] Failed to remove Docker image %%i; continuing
+          )
+          docker builder prune -f || echo [WARN] docker builder prune failed; continuing without pruning
+          echo [INFO] Docker cleanup completed
