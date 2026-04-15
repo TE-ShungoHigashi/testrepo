@@ -1,7 +1,6 @@
 name: Hello World
 
 on:
-  push:
   workflow_dispatch:
     inputs:
       name:
