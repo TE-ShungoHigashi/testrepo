@@ -3,10 +3,15 @@ name: Hello World
 on:
   push:
   workflow_dispatch:
+    inputs:
+      name:
+        description: 'Your name'
+        required: true
+        default: 'Bob'
 
 jobs:
   say-hello:
     runs-on: ubuntu-latest
     steps:
       - name: Say Hello
-        run: echo "Hello, World!"
+        run: echo "Hello, ${{ inputs.name }}!"
